@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>موقعي لتحميل الملفات</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #fceabb, #f8b500, #ff4e50);
+    margin: 0; padding: 0;
+}
+header {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: white;
+    text-align: center;
+    padding: 35px;
+    font-size: 32px;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.container {
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.section {
+    background: linear-gradient(145deg, #ffffffcc, #f0f0ffcc);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+.section h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #6a11cb;
+}
+.button-download {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    color: white;
+    margin-bottom: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.button-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+<body>
+
+<header>موقعي لتحميل الملفات</header>
+
+<div class="container">
+
+    <!-- قسم الملفات -->
+    <div class="section">
+        <h2>الملفات المتاحة للتحميل</h2>
+        <a href="Naval_14_Full_Pack_Repack.zip" download>
+            <button class="button-download">تحميل: Naval_14_Full_Pack_Repack.zip</button>
+        </a>
+        <a href="Generals_Challenge_-_Boss.zip" download>
+            <button class="button-download">تحميل: Generals_Challenge_-_Boss.zip</button>
+        </a>
+        <a href="GenPatcher2.14.zip" download>
+            <button class="button-download">تحميل: GenPatcher2.14.zip</button>
+        </a>
+        <a href="C&CGZH[peskgames.com].rar" تحميل:download>
+            <button class="button-download">تحميل: C&CGZH[peskgames.com].rar</button>
+    </div>
+
+</div>
+
+</body>
+</html>
