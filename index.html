@@ -3,60 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>موقع جذاب</title>
+<title>Genaral fix</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial;
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
-  color: white;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #fff;
   text-align: center;
 }
 
+/* الهيدر */
 header {
   padding: 20px;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
 }
 
+header h1 {
+  margin: 0;
+  font-size: 2.8em;
+  letter-spacing: 1px;
+}
+
+/* التنقل */
 nav a {
   margin: 10px;
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: background 0.3s, color 0.3s;
 }
 
 nav a:hover {
-  color: yellow;
+  background: #fff;
+  color: #4facfe;
 }
 
+/* الأقسام */
 section {
-  padding: 50px;
+  padding: 50px 20px;
 }
 
-/* زر تحميل */
+/* البطاقة */
+.card {
+  background: rgba(255,255,255,0.15);
+  padding: 25px;
+  border-radius: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* أزرار التحميل */
 .btn {
   display: inline-block;
   margin: 10px;
   padding: 15px 25px;
-  background: white;
-  color: #6e8efb;
+  background: #fff;
+  color: #4facfe;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #ffd700;
+  color: #fff;
 }
 
 /* إخفاء العناصر */
 .hidden {
   display: none;
-}
-
-.card {
-  background: rgba(255,255,255,0.15);
-  padding: 20px;
-  border-radius: 15px;
-  margin-top: 20px;
 }
 </style>
 </head>
@@ -64,8 +92,7 @@ section {
 <body>
 
 <header>
-  <h1>مرحبا بك في موقعي</h1>
-
+  <h1>اهلا في Genaral fix</h1>
   <nav>
     <a onclick="showHome()">الرئيسية</a>
     <a onclick="toggleServices()">الخدمات</a>
@@ -77,35 +104,44 @@ section {
 <!-- الرئيسية -->
 <section id="home">
   <h2>موقع جذاب وحديث</h2>
-
-  <!-- زر جديد -->
   <a class="btn" href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk" target="_blank">
     تحميل لعبة جنرال زيرو اور مجانا
   </a>
 </section>
 
-<!-- الخدمات (مخفية) -->
+<!-- الخدمات -->
 <section id="services" class="hidden">
   <h2>الخدمات</h2>
 
-  <a class="btn" href="files/file1.pdf" download>تحميل الملف الأول</a>
-  <a class="btn" href="files/file2.zip" download>تحميل الملف الثاني</a>
-</section>
-
-<!-- عن الموقع (مخفية) -->
-<section id="about" class="hidden">
-  <h2>عن الموقع</h2>
+  <div class="card">
+    تطبيق الاصلاحات الخاص باللعبة<br>
+    <a class="btn" href="https://legi.cc/genpatcher/" target="_blank">تحميل genpacher</a>
+  </div>
 
   <div class="card">
-    هو موقع صممه احمد حلاق
+    ماعليك سوى فك ضغطه ووضعه داخل مجلد اللعبة<br>
+    <a class="btn" href="https://drive.google.com/file/d/1xO8sv5z-QQNsfawE1s3N8cgzFJqQKyEp/view?usp=drivesdk" target="_blank">تحميل genaral boss</a>
+  </div>
+
+  <div class="card">
+    فك ضغط الملف في المسار <br> Documents > comand and conger genaral zero hour > maps<br>
+    <a class="btn" href="https://drive.google.com/file/d/1FvKNHHaSFJ6UzdsrzfQVP5exzCKqdzNX/view" target="_blank">تحميل sahel maps</a>
   </div>
 </section>
 
-<!-- تواصل معنا (مخفية) -->
+<!-- عن الموقع -->
+<section id="about" class="hidden">
+  <h2>عن الموقع</h2>
+  <div class="card">
+    موقع صمم في 28/4/2026 ليكون فيه كل ما يساعد جنرال زيرو اور ويساعدنا على تحسينها
+  </div>
+</section>
+
+<!-- تواصل معنا -->
 <section id="contact" class="hidden">
   <h2>تواصل معنا</h2>
-
   <div class="card">
+    📞 واتساب: 0937318709<br><br>
     📸 إنستغرام: ahmad657412
   </div>
 </section>
