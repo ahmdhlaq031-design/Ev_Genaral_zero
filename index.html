@@ -3,174 +3,399 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Genaral fix</title>
+<title>General Fix</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  color: #fff;
-  text-align: center;
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#4facfe,#00f2fe);
+  color:white;
+  text-align:center;
+  font-size:14px;
 }
 
 /* الهيدر */
-header {
-  padding: 20px;
-  background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(10px);
+header{
+  padding:20px;
+  background:rgba(0,0,0,0.25);
+  backdrop-filter:blur(10px);
 }
 
-header h1 {
-  margin: 0;
-  font-size: 2.8em;
-  letter-spacing: 1px;
+header h1{
+  margin:0;
+  font-size:28px;
 }
 
-/* التنقل */
-nav a {
-  margin: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 8px 15px;
-  border-radius: 10px;
-  transition: background 0.3s, color 0.3s;
+/* القائمة */
+nav{
+  margin-top:15px;
 }
 
-nav a:hover {
-  background: #fff;
-  color: #4facfe;
+nav a{
+  margin:8px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  cursor:pointer;
+  padding:8px 15px;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+nav a:hover{
+  background:white;
+  color:#4facfe;
 }
 
 /* الأقسام */
-section {
-  padding: 50px 20px;
+section{
+  padding:40px 15px;
 }
 
-/* البطاقة */
-.card {
-  background: rgba(255,255,255,0.15);
-  padding: 25px;
-  border-radius: 20px;
-  margin: 20px auto;
-  max-width: 500px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  transition: transform 0.3s;
+/* البطاقات */
+.card{
+  background:rgba(255,255,255,0.15);
+  padding:20px;
+  border-radius:20px;
+  margin:20px auto;
+  max-width:700px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  transition:0.3s;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+.card:hover{
+  transform:translateY(-5px);
 }
 
-/* أزرار التحميل */
-.btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 15px 25px;
-  background: #fff;
-  color: #4facfe;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+/* الأزرار */
+.btn{
+  display:inline-block;
+  margin:10px;
+  padding:12px 22px;
+  background:white;
+  color:#4facfe;
+  border:none;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-.btn:hover {
-  background: #ffd700;
-  color: #fff;
+.btn:hover{
+  background:#800020;
+  color:white;
 }
 
-/* إخفاء العناصر */
-.hidden {
-  display: none;
+/* الملاحظات */
+.note{
+  color:#800020;
+  font-weight:bold;
+  display:block;
+  margin-top:10px;
+  font-size:13px;
 }
+
+/* الإخفاء */
+.hidden{
+  display:none;
+}
+
+/* الدردشة */
+
+.chat-box{
+  background:rgba(0,0,0,0.2);
+  padding:15px;
+  border-radius:15px;
+  max-height:300px;
+  overflow-y:auto;
+  text-align:right;
+  margin-bottom:15px;
+}
+
+.chat-message{
+  background:rgba(255,255,255,0.15);
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.chat-input{
+  width:90%;
+  padding:10px;
+  margin:5px 0;
+  border:none;
+  border-radius:10px;
+  outline:none;
+  font-size:14px;
+}
+
+textarea.chat-input{
+  height:80px;
+  resize:none;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>اهلا في Genaral fix</h1>
-  <nav>
-    <a onclick="showHome()">الرئيسية</a>
-    <a onclick="toggleServices()">الخدمات</a>
-    <a onclick="toggleAbout()">عن الموقع</a>
-    <a onclick="toggleContact()">تواصل معنا</a>
-  </nav>
+
+<h1>اهلا في General Fix</h1>
+
+<nav>
+  <a onclick="showHome()">الرئيسية</a>
+  <a onclick="toggleServices()">الخدمات</a>
+  <a onclick="toggleAbout()">عن الموقع</a>
+  <a onclick="toggleContact()">تواصل معنا</a>
+</nav>
+
 </header>
 
 <!-- الرئيسية -->
+
 <section id="home">
-  <h2>موقع جذاب وحديث</h2>
-  <a class="btn" href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk" target="_blank">
-    تحميل لعبة جنرال زيرو اور مجانا
-  </a>
+
+<h2>موقع جذاب وحديث</h2>
+
+<a class="btn"
+href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk"
+target="_blank">
+
+تحميل لعبة جنرال زيرو أور مجانا
+
+</a>
+
+<!-- الدردشة -->
+
+<div class="card">
+
+<h3>دردشة اللاعبين</h3>
+
+<p>
+إذا كان لديك سؤال يمكنك كتابته هنا ويمكن لأي مستخدم آخر الإجابة عليه
+</p>
+
+<div id="chatBox" class="chat-box"></div>
+
+<input
+type="text"
+id="username"
+class="chat-input"
+placeholder="اسمك">
+
+<br>
+
+<textarea
+id="message"
+class="chat-input"
+placeholder="اكتب رسالتك..."></textarea>
+
+<br>
+
+<button class="btn" onclick="sendMessage()">
+إرسال
+</button>
+
+</div>
+
 </section>
 
 <!-- الخدمات -->
+
 <section id="services" class="hidden">
-  <h2>الخدمات</h2>
 
-  <div class="card">
-    تطبيق الاصلاحات الخاص باللعبة<br>
-    <a class="btn" href="https://legi.cc/genpatcher/" target="_blank">تحميل genpacher</a>
-  </div>
+<h2>الخدمات</h2>
 
-  <div class="card">
-    ماعليك سوى فك ضغطه ووضعه داخل مجلد اللعبة<br>
-    <a class="btn" href="https://drive.google.com/file/d/1xO8sv5z-QQNsfawE1s3N8cgzFJqQKyEp/view?usp=drivesdk" target="_blank">تحميل genaral boss</a>
-  </div>
+<!-- GenPatcher -->
 
-  <div class="card">
-    فك ضغط الملف في المسار <br> Documents > comand and conger genaral zero hour > maps<br>
-    <a class="btn" href="https://drive.google.com/file/d/1FvKNHHaSFJ6UzdsrzfQVP5exzCKqdzNX/view" target="_blank">تحميل sahel maps</a>
-  </div>
+<div class="card">
+
+تطبيق الإصلاحات الخاص باللعبة
+
+<br><br>
+
+<a class="btn"
+href="https://legi.cc/genpatcher/"
+target="_blank">
+
+تحميل GenPatcher
+
+</a>
+
+</div>
+
+<!-- General Boss -->
+
+<div class="card">
+
+ما عليك سوى فك ضغطه ووضعه داخل مجلد اللعبة
+
+<br><br>
+
+<span class="note">
+⚠ يجب وضعه في مجلد اللعبة عند جميع اللاعبين عند اللعب الجماعي لتجنب رسالة Mismatch
+</span>
+
+<br>
+
+<a class="btn"
+href="https://drive.google.com/file/d/1xO8sv5z-QQNsfawE1s3N8cgzFJqQKyEp/view?usp=drivesdk"
+target="_blank">
+
+تحميل General Boss
+
+</a>
+
+</div>
+
+<!-- Sahel Maps -->
+
+<div class="card">
+
+هي 800 خريطة يمكنك إضافتها من خلال فك ضغط الملف ووضعه في المسار
+
+<br><br>
+
+Documents > Command and Conquer Generals Zero Hour > Maps
+
+<br><br>
+
+<a class="btn"
+href="https://drive.google.com/file/d/1FvKNHHaSFJ6UzdsrzfQVP5exzCKqdzNX/view"
+target="_blank">
+
+تحميل Sahel Maps
+
+</a>
+
+</div>
+
+<!-- Map.ini -->
+
+<div class="card">
+
+هذا ملف تضعه داخل أي خريطة لتسريع البناء 5 أضعاف وجعل كل شيء رتبة 3
+
+<br><br>
+
+<span class="note">
+⚠ يجب وضعه في مجلد الخريطة عند جميع اللاعبين عند اللعب الجماعي لتجنب Mismatch
+</span>
+
+<br>
+
+<a class="btn"
+href="https://drive.google.com/file/d/13xgL7ySgyzmc2tHIaZTS03aUJ7OI3PVg/view?usp=drivesdk"
+target="_blank">
+
+تحميل Map.ini
+
+</a>
+
+</div>
+
 </section>
 
 <!-- عن الموقع -->
+
 <section id="about" class="hidden">
-  <h2>عن الموقع</h2>
-  <div class="card">
-    موقع صمم في 28/4/2026 ليكون فيه كل ما يساعد جنرال زيرو اور ويساعدنا على تحسينها
-  </div>
+
+<h2>عن الموقع</h2>
+
+<div class="card">
+
+موقع صُمم في 28/4/2026 ليحتوي على كل ما يساعد لعبة جنرال زيرو أور ويساعدنا على تحسينها. يمكنكم زيارة قسم الخدمات لتحميل إصلاحات اللعبة وخرائط جديدة، وفي حال وجود أي استفسار لا تترددوا في السؤال.
+
+</div>
+
 </section>
 
-<!-- تواصل معنا -->
+<!-- التواصل -->
+
 <section id="contact" class="hidden">
-  <h2>تواصل معنا</h2>
-  <div class="card">
-    📞 واتساب: 0937318709<br><br>
-    📸 إنستغرام: ahmad657412
-  </div>
+
+<h2>تواصل معنا</h2>
+
+<div class="card">
+
+📞 واتساب: 0937318709
+
+<br><br>
+
+📸 إنستغرام: ahmad657412
+
+</div>
+
 </section>
 
 <script>
+
 function hideAll(){
-  document.getElementById("services").classList.add("hidden");
-  document.getElementById("about").classList.add("hidden");
-  document.getElementById("contact").classList.add("hidden");
+
+document.getElementById("services").classList.add("hidden");
+document.getElementById("about").classList.add("hidden");
+document.getElementById("contact").classList.add("hidden");
+
 }
 
 function showHome(){
-  hideAll();
+
+hideAll();
+
 }
 
 function toggleServices(){
-  hideAll();
-  document.getElementById("services").classList.remove("hidden");
+
+hideAll();
+document.getElementById("services").classList.remove("hidden");
+
 }
 
 function toggleAbout(){
-  hideAll();
-  document.getElementById("about").classList.remove("hidden");
+
+hideAll();
+document.getElementById("about").classList.remove("hidden");
+
 }
 
 function toggleContact(){
-  hideAll();
-  document.getElementById("contact").classList.remove("hidden");
+
+hideAll();
+document.getElementById("contact").classList.remove("hidden");
+
 }
+
+/* الدردشة */
+
+function sendMessage(){
+
+let username = document.getElementById("username").value;
+let message = document.getElementById("message").value;
+
+if(username.trim() === "" || message.trim() === ""){
+  return;
+}
+
+let chatBox = document.getElementById("chatBox");
+
+let msg = document.createElement("div");
+
+msg.classList.add("chat-message");
+
+msg.innerHTML = "<b>" + username + ":</b><br>" + message;
+
+chatBox.appendChild(msg);
+
+document.getElementById("message").value = "";
+
+chatBox.scrollTop = chatBox.scrollHeight;
+
+}
+
 </script>
 
 </body>
