@@ -21,13 +21,112 @@ html{
     scroll-behavior:smooth;
 }
 
+/* ========================================== */
+/* ========= متغيرات الوضع الداكن ========= */
+/* ========================================== */
+:root{
+    --bg-primary: #06070d;
+    --bg-secondary: rgba(20,24,40,0.60);
+    --bg-card: rgba(20,24,40,0.60);
+    --bg-header: rgba(10,12,22,0.75);
+    --bg-sidebar: rgba(10,14,28,0.97);
+    --bg-input: rgba(20,24,40,0.75);
+    --bg-path: rgba(0,0,0,0.35);
+    --text-primary: white;
+    --text-secondary: #d6d6de;
+    --text-muted: #8f96ad;
+    --text-sidebar: #bcc0d0;
+    --border-color: rgba(255,255,255,0.08);
+    --border-sidebar: rgba(255,255,255,0.06);
+    --glow-color: rgba(0,255,200,0.15);
+    --gradient-1: radial-gradient(circle at top right, rgba(0,255,200,0.15), transparent 30%);
+    --gradient-2: radial-gradient(circle at bottom left, rgba(0,140,255,0.18), transparent 30%);
+    --gradient-3: radial-gradient(circle at center, rgba(130,0,255,0.10), transparent 40%);
+    --grid-color: rgba(255,255,255,0.02);
+    --note-bg: rgba(255,70,110,0.08);
+    --note-border: rgba(255,70,110,0.20);
+    --note-info-bg: rgba(0,200,255,0.08);
+    --note-info-border: rgba(0,200,255,0.20);
+    --problem-card-bg: rgba(25,20,30,0.65);
+    --problem-card-border: rgba(255,100,130,0.20);
+    --solution-bg: rgba(0,255,200,0.06);
+    --solution-border: rgba(0,255,200,0.15);
+    --tutorial-card-bg: rgba(25,22,18,0.65);
+    --tutorial-card-border: rgba(255,180,50,0.20);
+    --overlay-bg: rgba(0,0,0,0.65);
+    --footer-text: #8f96ad;
+    --badge-new-bg: rgba(0,255,200,0.15);
+    --badge-popular-bg: rgba(255,180,50,0.15);
+    --badge-updated-bg: rgba(0,166,255,0.15);
+    --copy-btn-bg: rgba(0,255,200,0.10);
+    --copy-btn-border: rgba(0,255,200,0.25);
+    --icon-bg: rgba(255,255,255,0.04);
+    --icon-border: rgba(255,255,255,0.08);
+    --btn-text: #071018;
+    --search-icon-color: #6b728a;
+    --code-bg: rgba(0,0,0,0.3);
+    --iframe-bg: #0d1220;
+    --back-to-top-bg: rgba(0,255,200,0.12);
+    --back-to-top-border: rgba(0,255,200,0.30);
+}
+
+/* ========================================== */
+/* ========= متغيرات الوضع النهاري ========= */
+/* ========================================== */
+body.light-mode{
+    --bg-primary: #f5f7fa;
+    --bg-secondary: rgba(255,255,255,0.75);
+    --bg-card: rgba(255,255,255,0.80);
+    --bg-header: rgba(255,255,255,0.85);
+    --bg-sidebar: rgba(255,255,255,0.95);
+    --bg-input: rgba(255,255,255,0.85);
+    --bg-path: rgba(240,242,245,0.90);
+    --text-primary: #1a1d2e;
+    --text-secondary: #3d4155;
+    --text-muted: #6b7280;
+    --text-sidebar: #3d4155;
+    --border-color: rgba(0,0,0,0.08);
+    --border-sidebar: rgba(0,0,0,0.06);
+    --glow-color: rgba(0,180,150,0.10);
+    --gradient-1: radial-gradient(circle at top right, rgba(0,200,170,0.10), transparent 35%);
+    --gradient-2: radial-gradient(circle at bottom left, rgba(0,140,255,0.10), transparent 35%);
+    --gradient-3: radial-gradient(circle at center, rgba(130,0,255,0.05), transparent 40%);
+    --grid-color: rgba(0,0,0,0.03);
+    --note-bg: rgba(255,70,110,0.06);
+    --note-border: rgba(255,70,110,0.18);
+    --note-info-bg: rgba(0,180,220,0.06);
+    --note-info-border: rgba(0,180,220,0.18);
+    --problem-card-bg: rgba(255,245,247,0.75);
+    --problem-card-border: rgba(255,100,130,0.18);
+    --solution-bg: rgba(0,200,170,0.05);
+    --solution-border: rgba(0,200,170,0.15);
+    --tutorial-card-bg: rgba(255,248,235,0.75);
+    --tutorial-card-border: rgba(255,180,50,0.18);
+    --overlay-bg: rgba(0,0,0,0.40);
+    --footer-text: #6b7280;
+    --badge-new-bg: rgba(0,200,170,0.12);
+    --badge-popular-bg: rgba(255,170,40,0.12);
+    --badge-updated-bg: rgba(0,150,240,0.12);
+    --copy-btn-bg: rgba(0,180,150,0.08);
+    --copy-btn-border: rgba(0,180,150,0.22);
+    --icon-bg: rgba(0,0,0,0.03);
+    --icon-border: rgba(0,0,0,0.08);
+    --btn-text: white;
+    --search-icon-color: #9ca3af;
+    --code-bg: rgba(0,0,0,0.05);
+    --iframe-bg: #eef0f4;
+    --back-to-top-bg: rgba(0,180,150,0.12);
+    --back-to-top-border: rgba(0,180,150,0.30);
+}
+
 body{
     font-family:'Cairo',sans-serif;
-    background:#06070d;
-    color:white;
+    background:var(--bg-primary);
+    color:var(--text-primary);
     overflow-x:hidden;
     min-height:100vh;
     position:relative;
+    transition:background 0.5s ease, color 0.5s ease;
 }
 
 /* خلفية احترافية */
@@ -35,12 +134,10 @@ body::before{
     content:'';
     position:fixed;
     inset:0;
-    background:
-    radial-gradient(circle at top right, rgba(0,255,200,0.15), transparent 30%),
-    radial-gradient(circle at bottom left, rgba(0,140,255,0.18), transparent 30%),
-    radial-gradient(circle at center, rgba(130,0,255,0.10), transparent 40%);
+    background: var(--gradient-1), var(--gradient-2), var(--gradient-3);
     z-index:-2;
     animation:moveBg 10s ease-in-out infinite alternate;
+    transition:background 0.5s ease;
 }
 
 @keyframes moveBg{
@@ -54,10 +151,11 @@ body::after{
     position:fixed;
     inset:0;
     background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size:45px 45px;
     z-index:-1;
+    transition:background-image 0.5s ease;
 }
 
 /* ========= شريط البحث ========= */
@@ -75,10 +173,10 @@ body::after{
     padding:16px 22px;
     padding-left:55px;
     border-radius:999px;
-    border:1.5px solid rgba(255,255,255,0.12);
-    background:rgba(20,24,40,0.75);
+    border:1.5px solid var(--border-color);
+    background:var(--bg-input);
     backdrop-filter:blur(20px);
-    color:white;
+    color:var(--text-primary);
     font-family:'Cairo',sans-serif;
     font-size:15px;
     font-weight:500;
@@ -87,20 +185,19 @@ body::after{
 }
 
 .search-container input::placeholder{
-    color:#6b728a;
+    color:var(--search-icon-color);
 }
 
 .search-container input:focus{
     border-color:rgba(0,255,200,0.45);
-    box-shadow:0 0 30px rgba(0,255,200,0.12);
-    background:rgba(25,30,50,0.85);
+    box-shadow:0 0 30px var(--glow-color);
 }
 
 .search-container .search-icon{
     position:absolute;
     left:16px;
     font-size:20px;
-    color:#6b728a;
+    color:var(--search-icon-color);
     pointer-events:none;
 }
 
@@ -110,13 +207,14 @@ header{
     top:0;
     z-index:100;
     backdrop-filter:blur(25px);
-    background:rgba(10,12,22,0.75);
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    background:var(--bg-header);
+    border-bottom:1px solid var(--border-color);
     padding:18px 22px;
     display:flex;
     align-items:center;
     justify-content:center;
     position:relative;
+    transition:background 0.5s ease, border-color 0.5s ease;
 }
 
 header h1{
@@ -131,6 +229,34 @@ header h1{
     margin:0 auto;
 }
 
+/* ========= زر تبديل الوضع ========= */
+.theme-toggle{
+    position:absolute;
+    top:50%;
+    left:22px;
+    transform:translateY(-50%);
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--icon-bg);
+    border:1.5px solid var(--icon-border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:200;
+    transition:0.35s;
+    font-size:20px;
+    backdrop-filter:blur(10px);
+}
+
+.theme-toggle:hover{
+    background:rgba(0,255,200,0.12);
+    border-color:rgba(0,255,200,0.4);
+    box-shadow:0 0 22px var(--glow-color);
+    transform:translateY(-50%) scale(1.08);
+}
+
 /* زر القائمة الجانبية */
 .menu-btn{
     position:absolute;
@@ -140,8 +266,8 @@ header h1{
     width:48px;
     height:48px;
     border-radius:14px;
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(255,255,255,0.12);
+    background:var(--icon-bg);
+    border:1px solid var(--icon-border);
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -156,7 +282,7 @@ header h1{
 .menu-btn:hover{
     background:rgba(0,255,200,0.12);
     border-color:rgba(0,255,200,0.4);
-    box-shadow:0 0 22px rgba(0,255,200,0.15);
+    box-shadow:0 0 22px var(--glow-color);
 }
 
 .menu-btn span{
@@ -164,7 +290,7 @@ header h1{
     width:22px;
     height:2.5px;
     border-radius:3px;
-    background:white;
+    background:var(--text-primary);
     transition:0.3s;
 }
 
@@ -185,16 +311,16 @@ header h1{
     right:-360px;
     width:320px;
     height:100vh;
-    background:rgba(10,14,28,0.97);
+    background:var(--bg-sidebar);
     backdrop-filter:blur(35px);
-    border-left:1px solid rgba(255,255,255,0.06);
+    border-left:1px solid var(--border-sidebar);
     z-index:150;
     padding:85px 14px 30px 14px;
     display:flex;
     flex-direction:column;
     gap:6px;
     transition:0.45s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow:-15px 0 60px rgba(0,0,0,0.55);
+    box-shadow:-15px 0 60px rgba(0,0,0,0.25);
     overflow-y:auto;
 }
 
@@ -203,7 +329,7 @@ header h1{
 }
 
 .sidebar-title{
-    color:#6b728a;
+    color:var(--text-muted);
     font-size:10px;
     font-weight:800;
     letter-spacing:3px;
@@ -215,7 +341,7 @@ header h1{
 .overlay{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.65);
+    background:var(--overlay-bg);
     z-index:140;
     opacity:0;
     pointer-events:none;
@@ -235,12 +361,12 @@ header h1{
     padding:16px 20px;
     border-radius:20px;
     text-decoration:none;
-    color:#bcc0d0;
+    color:var(--text-sidebar);
     font-size:14px;
     font-weight:700;
     cursor:pointer;
     border:1.5px solid transparent;
-    background:rgba(255,255,255,0.02);
+    background:transparent;
     transition:all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     position:relative;
     overflow:hidden;
@@ -267,8 +393,8 @@ header h1{
     width:46px;
     height:46px;
     border-radius:50%;
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(255,255,255,0.08);
+    background:var(--icon-bg);
+    border:1px solid var(--icon-border);
     font-size:20px;
     flex-shrink:0;
     transition:0.4s;
@@ -285,28 +411,22 @@ header h1{
 .sidebar a:nth-child(7) .icon{ background:rgba(255,60,100,0.10); border-color:rgba(255,60,100,0.18); }
 
 .sidebar a:hover{
-    color:white;
+    color:var(--text-primary);
     transform:translateX(-6px);
-    border-color:rgba(255,255,255,0.12);
-    background:rgba(255,255,255,0.04);
-    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    border-color:var(--border-color);
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
 .sidebar a:hover .icon{
     transform:scale(1.08);
-    box-shadow:0 0 25px rgba(0,255,200,0.18);
+    box-shadow:0 0 25px var(--glow-color);
     border-color:rgba(0,255,200,0.35);
 }
 
 .sidebar-divider{
     height:1px;
-    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    background:linear-gradient(90deg, transparent, var(--border-color), transparent);
     margin:8px 10px;
-}
-
-.sidebar a.problems-btn{
-    border:1.5px solid rgba(255,80,120,0.25);
-    background:rgba(255,80,120,0.03);
 }
 
 .sidebar a.problems-btn .icon{
@@ -314,10 +434,6 @@ header h1{
     border-color:rgba(255,80,120,0.22);
 }
 
-.sidebar a.problems-btn:hover{
-    border-color:rgba(255,80,120,0.5);
-    background:rgba(255,80,120,0.07);
-}
 .sidebar a.problems-btn:hover .icon{
     box-shadow:0 0 25px rgba(255,80,120,0.2);
     border-color:rgba(255,80,120,0.4);
@@ -350,21 +466,21 @@ section h2{
 }
 
 .badge-new{
-    background:rgba(0,255,200,0.15);
-    color:#00ffc8;
+    background:var(--badge-new-bg);
+    color:#00e6b0;
     border:1px solid rgba(0,255,200,0.30);
     animation:pulseBadge 2s infinite;
 }
 
 .badge-popular{
-    background:rgba(255,180,50,0.15);
-    color:#ffb832;
+    background:var(--badge-popular-bg);
+    color:#e8a520;
     border:1px solid rgba(255,180,50,0.30);
 }
 
 .badge-updated{
-    background:rgba(0,166,255,0.15);
-    color:#00a6ff;
+    background:var(--badge-updated-bg);
+    color:#0090e0;
     border:1px solid rgba(0,166,255,0.30);
 }
 
@@ -379,8 +495,8 @@ section h2{
     margin:35px auto;
     padding:35px 28px;
     border-radius:28px;
-    background:rgba(20,24,40,0.60);
-    border:1px solid rgba(255,255,255,0.08);
+    background:var(--bg-card);
+    border:1px solid var(--border-color);
     backdrop-filter:blur(22px);
     position:relative;
     overflow:hidden;
@@ -392,27 +508,25 @@ section h2{
     position:absolute;
     width:250px;
     height:250px;
-    background:radial-gradient(circle, rgba(0,255,200,0.08), transparent 70%);
+    background:radial-gradient(circle, var(--glow-color), transparent 70%);
     top:-120px;
     left:-120px;
 }
 
 .card:hover{
     transform:translateY(-8px);
-    border-color:rgba(0,255,200,0.20);
-    box-shadow:
-    0 20px 50px rgba(0,0,0,0.45),
-    0 0 35px rgba(0,255,200,0.10);
+    border-color:rgba(0,255,200,0.25);
+    box-shadow:0 20px 50px rgba(0,0,0,0.15), 0 0 35px var(--glow-color);
 }
 
 .card h3{
     font-size:25px;
     margin-bottom:18px;
-    color:#00ffd0;
+    color:#00c8a0;
 }
 
 .card p{
-    color:#d6d6de;
+    color:var(--text-secondary);
     line-height:2;
 }
 
@@ -421,13 +535,13 @@ section h2{
     display:inline-flex;
     align-items:center;
     gap:6px;
-    color:#8f96ad;
+    color:var(--text-muted);
     font-size:12px;
     margin-top:6px;
 }
 
 .download-count span{
-    color:#00ffc8;
+    color:#00c8a0;
     font-weight:700;
 }
 
@@ -436,7 +550,7 @@ section h2{
     width:6px;
     height:6px;
     border-radius:50%;
-    background:#00ffc8;
+    background:#00c8a0;
     animation:loadingPulse 0.8s infinite alternate;
 }
 
@@ -445,7 +559,7 @@ section h2{
     to{ opacity:1; }
 }
 
-/* ========= روابط تحميل متعددة ========= */
+/* ========= روابط تحميل ========= */
 .download-links{
     display:flex;
     gap:10px;
@@ -464,8 +578,8 @@ section h2{
 
 /* بطاقة المشاكل */
 .problem-card{
-    border:1px solid rgba(255,100,130,0.20);
-    background:rgba(25,20,30,0.65);
+    border:1px solid var(--problem-card-border);
+    background:var(--problem-card-bg);
 }
 
 .problem-card h3{
@@ -473,22 +587,22 @@ section h2{
 }
 
 .problem-card .solution{
-    background:rgba(0,255,200,0.06);
-    border:1px solid rgba(0,255,200,0.15);
+    background:var(--solution-bg);
+    border:1px solid var(--solution-border);
     border-radius:16px;
     padding:18px 20px;
     margin-top:16px;
 }
 
 .problem-card .solution strong{
-    color:#00ffc8;
+    color:#00c8a0;
     font-size:17px;
 }
 
 .steps-list{
     margin-top:10px;
     padding-right:20px;
-    color:#d6d6de;
+    color:var(--text-secondary);
     line-height:2.2;
 }
 
@@ -502,8 +616,8 @@ section h2{
     align-items:center;
     gap:10px;
     margin-top:12px;
-    background:rgba(0,0,0,0.35);
-    border:1px solid rgba(255,255,255,0.10);
+    background:var(--bg-path);
+    border:1px solid var(--border-color);
     border-radius:14px;
     padding:6px 6px 6px 16px;
     flex-wrap:wrap;
@@ -511,7 +625,7 @@ section h2{
 
 .path-container .path-text{
     flex:1;
-    color:#b0b8cc;
+    color:var(--text-secondary);
     font-size:13px;
     direction:ltr;
     text-align:left;
@@ -526,9 +640,9 @@ section h2{
     gap:7px;
     padding:10px 16px;
     border-radius:10px;
-    background:rgba(0,255,200,0.10);
-    border:1px solid rgba(0,255,200,0.25);
-    color:#00ffc8;
+    background:var(--copy-btn-bg);
+    border:1px solid var(--copy-btn-border);
+    color:#00c8a0;
     font-size:13px;
     font-weight:700;
     cursor:pointer;
@@ -540,8 +654,8 @@ section h2{
 
 .copy-btn:hover{
     background:rgba(0,255,200,0.18);
-    border-color:rgba(0,255,200,0.45);
-    box-shadow:0 0 18px rgba(0,255,200,0.15);
+    border-color:rgba(0,255,200,0.50);
+    box-shadow:0 0 18px var(--glow-color);
 }
 
 .copy-btn.copied{
@@ -562,12 +676,12 @@ section h2{
     text-decoration:none;
     font-size:14px;
     font-weight:800;
-    color:#071018;
-    background:linear-gradient(135deg,#00ffc8,#00a6ff);
+    color:var(--btn-text);
+    background:linear-gradient(135deg,#00c8a0,#0098e0);
     position:relative;
     overflow:hidden;
     transition:0.35s ease;
-    box-shadow:0 10px 25px rgba(0,255,200,0.22);
+    box-shadow:0 10px 25px rgba(0,200,160,0.22);
     cursor:pointer;
     border:none;
 }
@@ -587,16 +701,13 @@ section h2{
 
 .btn:hover{
     transform:translateY(-4px) scale(1.03);
-    box-shadow:
-    0 15px 35px rgba(0,255,200,0.35),
-    0 0 50px rgba(0,166,255,0.18);
+    box-shadow:0 15px 35px rgba(0,200,160,0.35), 0 0 50px rgba(0,152,224,0.18);
 }
 
 .btn:active{
     transform:scale(0.96);
 }
 
-/* زر يوتيوب */
 .btn-youtube{
     background:linear-gradient(135deg,#ff416c,#ff4b2b);
     box-shadow:0 10px 25px rgba(255,65,108,0.22);
@@ -606,31 +717,30 @@ section h2{
     box-shadow:0 15px 35px rgba(255,65,108,0.35), 0 0 50px rgba(255,75,43,0.18);
 }
 
-/* زر أزرق */
-.btn-blue{
-    background:linear-gradient(135deg,#00a6ff,#7b5cff);
-    box-shadow:0 10px 25px rgba(0,166,255,0.22);
+.btn-discord{
+    background:linear-gradient(135deg,#5865F2,#4752c4);
+    box-shadow:0 10px 25px rgba(88,101,242,0.22);
 }
 
-.btn-blue:hover{
-    box-shadow:0 15px 35px rgba(0,166,255,0.35), 0 0 50px rgba(123,92,255,0.18);
+.btn-discord:hover{
+    box-shadow:0 15px 35px rgba(88,101,242,0.35), 0 0 50px rgba(71,82,196,0.18);
 }
 
 /* بطاقة شرح */
 .tutorial-card{
-    border:1px solid rgba(255,180,50,0.20);
-    background:rgba(25,22,18,0.65);
+    border:1px solid var(--tutorial-card-border);
+    background:var(--tutorial-card-bg);
 }
 
 .tutorial-card h3{
-    color:#ffb832;
+    color:#e8a520;
 }
 
 /* الملاحظات */
 .note{
     margin-top:18px;
-    background:rgba(255,70,110,0.08);
-    border:1px solid rgba(255,70,110,0.20);
+    background:var(--note-bg);
+    border:1px solid var(--note-border);
     color:#ff7a9b;
     padding:14px 16px;
     border-radius:16px;
@@ -638,9 +748,9 @@ section h2{
 }
 
 .note-info{
-    background:rgba(0,200,255,0.08);
-    border:1px solid rgba(0,200,255,0.20);
-    color:#7ad4ff;
+    background:var(--note-info-bg);
+    border:1px solid var(--note-info-border);
+    color:#5ac8e8;
 }
 
 /* الشات */
@@ -650,12 +760,12 @@ section h2{
     border:none;
     border-radius:22px;
     margin-top:18px;
-    background:#0d1220;
+    background:var(--iframe-bg);
 }
 
 /* الروابط */
 .contact-link{
-    color:#00c8ff;
+    color:#00a8e0;
     text-decoration:none;
     font-weight:700;
 }
@@ -676,9 +786,9 @@ section h2{
     width:50px;
     height:50px;
     border-radius:50%;
-    background:rgba(0,255,200,0.12);
-    border:1.5px solid rgba(0,255,200,0.30);
-    color:#00ffc8;
+    background:var(--back-to-top-bg);
+    border:1.5px solid var(--back-to-top-border);
+    color:#00c8a0;
     font-size:22px;
     display:flex;
     align-items:center;
@@ -697,17 +807,15 @@ section h2{
 }
 
 .back-to-top:hover{
-    background:rgba(0,255,200,0.20);
-    border-color:rgba(0,255,200,0.5);
-    box-shadow:0 0 25px rgba(0,255,200,0.20);
     transform:translateY(-5px);
+    box-shadow:0 0 25px var(--glow-color);
 }
 
 /* فوتر */
 footer{
     padding:30px 15px;
     text-align:center;
-    color:#8f96ad;
+    color:var(--footer-text);
     font-size:13px;
 }
 
@@ -715,13 +823,20 @@ footer{
 @media(max-width:700px){
 
     header h1{
-        font-size:26px;
+        font-size:24px;
+    }
+
+    .theme-toggle{
+        width:38px;
+        height:38px;
+        left:8px;
+        font-size:17px;
     }
 
     .menu-btn{
         width:42px;
         height:42px;
-        right:12px;
+        right:8px;
     }
 
     .sidebar{
@@ -797,6 +912,11 @@ footer{
 
 <header>
 
+<!-- زر تبديل الوضع -->
+<div class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع النهاري / الليلي">
+    🌙
+</div>
+
 <h1>General Fix</h1>
 
 <!-- زر القائمة الجانبية -->
@@ -867,14 +987,12 @@ footer{
     📥 جاري تحميل العدد... <span class="loading-dot"></span>
 </div>
 
-<div class="download-links">
-    <a class="btn" href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk" target="_blank" onclick="incrementDownload('game-download')">
-        📥 درايف
-    </a>
-    <a class="btn btn-blue" href="https://www.mediafire.com/" target="_blank" onclick="incrementDownload('game-download')">
-        📥 ميديا فاير (احتياطي)
-    </a>
-</div>
+<a class="btn"
+href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk"
+target="_blank"
+onclick="incrementDownload('game-download')">
+📥 تحميل اللعبة
+</a>
 
 </div>
 
@@ -912,14 +1030,12 @@ class="cbox-iframe">
     📥 جاري تحميل العدد... <span class="loading-dot"></span>
 </div>
 
-<div class="download-links">
-    <a class="btn" href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk" target="_blank" onclick="incrementDownload('game-download')">
-        📥 درايف
-    </a>
-    <a class="btn btn-blue" href="https://www.mediafire.com/" target="_blank" onclick="incrementDownload('game-download')">
-        📥 ميديا فاير (احتياطي)
-    </a>
-</div>
+<a class="btn"
+href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk"
+target="_blank"
+onclick="incrementDownload('game-download')">
+📥 تحميل اللعبة
+</a>
 
 </div>
 
@@ -1105,14 +1221,40 @@ onclick="incrementDownload('mapini')">
 <h3>🗣️ تعريب أصوات وحدات GLA <span class="badge badge-new">✨ جديد</span></h3>
 
 <p>
-هذا الملف يجعل وحدات جيش <strong>GLA</strong> تتكلم بالعربية. ما عليك سوى وضعه في المسار:
+هذا الملف يجعل وحدات جيش <strong>GLA</strong> تتكلم بالعربية. ما عليك سوى وضعه في أحد المسارات التالية:
 </p>
 
 <div class="note note-info">
-📂 <strong>المسارات الممكنة:</strong><br>
-• للنسخة الأصلية: <code style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px; direction:ltr; display:inline-block; margin-top:4px;">C:\Program Files (x86)\EA Games\Command & Conquer Generals Zero Hour</code><br><br>
-• لنسخة R.G Machine: <code style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px; direction:ltr; display:inline-block; margin-top:4px;">C:\Program Files (x86)\R.G Machine\Command & Conquer Generals Zero Hour</code><br><br>
-• أحياناً يجب وضعه في المسار الفرعي: <code style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px; direction:ltr; display:inline-block; margin-top:4px;">Zero Hour\Data\Audio\Speech\Arabic\GLA</code>
+📂 <strong>المسار 1 (النسخة الأصلية):</strong>
+</div>
+
+<div class="path-container">
+    <span class="path-text" style="direction:ltr;">C:\Program Files (x86)\EA Games\Command & Conquer Generals Zero Hour</span>
+    <button class="copy-btn" onclick="copyPath(this, 'C:\\Program Files (x86)\\EA Games\\Command & Conquer Generals Zero Hour')">
+        📋 نسخ
+    </button>
+</div>
+
+<div class="note note-info" style="margin-top:10px;">
+📂 <strong>المسار 2 (نسخة R.G Machine):</strong>
+</div>
+
+<div class="path-container">
+    <span class="path-text" style="direction:ltr;">C:\Program Files (x86)\R.G Machine\Command & Conquer Generals Zero Hour</span>
+    <button class="copy-btn" onclick="copyPath(this, 'C:\\Program Files (x86)\\R.G Machine\\Command & Conquer Generals Zero Hour')">
+        📋 نسخ
+    </button>
+</div>
+
+<div class="note note-info" style="margin-top:10px;">
+📂 <strong>المسار 3 (المسار الفرعي أحياناً):</strong>
+</div>
+
+<div class="path-container">
+    <span class="path-text" style="direction:ltr;">Zero Hour\Data\Audio\Speech\Arabic\GLA</span>
+    <button class="copy-btn" onclick="copyPath(this, 'Zero Hour\\Data\\Audio\\Speech\\Arabic\\GLA')">
+        📋 نسخ
+    </button>
 </div>
 
 <div class="download-count" id="count-gla-arabic">
@@ -1144,14 +1286,9 @@ onclick="incrementDownload('gla-arabic')">
 فيديو شامل يشرح طريقة تحميل لعبة <strong>Command & Conquer Generals Zero Hour</strong> من موقعها الرسمي وتثبيت جميع الإصلاحات اللازمة لتشغيلها بدون مشاكل على الأجهزة الحديثة.
 </p>
 
-<div class="download-count" id="count-tutorial1">
-    📥 جاري تحميل العدد... <span class="loading-dot"></span>
-</div>
-
 <a class="btn btn-youtube"
 href="https://www.youtube.com/watch?v=7jbF9zxqLdw"
-target="_blank"
-onclick="incrementDownload('tutorial1')">
+target="_blank">
 ▶️ مشاهدة الشرح على يوتيوب
 </a>
 
@@ -1166,14 +1303,9 @@ onclick="incrementDownload('tutorial1')">
 فيديو يشرح طريقة اللعب الجماعي أونلاين خطوة بخطوة، وكيفية الاتصال باللاعبين الآخرين بسهولة دون مشاكل.
 </p>
 
-<div class="download-count" id="count-tutorial2">
-    📥 جاري تحميل العدد... <span class="loading-dot"></span>
-</div>
-
 <a class="btn btn-youtube"
 href="https://www.youtube.com/watch?v=sLiEn6Qm5Is"
-target="_blank"
-onclick="incrementDownload('tutorial2')">
+target="_blank">
 ▶️ مشاهدة الشرح على يوتيوب
 </a>
 
@@ -1188,14 +1320,9 @@ onclick="incrementDownload('tutorial2')">
 فيديو شامل يشرح كيفية إصلاح جميع الأخطاء الشائعة في لعبة جنرال زيرو أور، بما فيها مشاكل التوافق والشاشة السوداء والتحطم.
 </p>
 
-<div class="download-count" id="count-tutorial3">
-    📥 جاري تحميل العدد... <span class="loading-dot"></span>
-</div>
-
 <a class="btn btn-youtube"
 href="https://www.youtube.com/watch?v=sghBzS6ijsQ"
-target="_blank"
-onclick="incrementDownload('tutorial3')">
+target="_blank">
 ▶️ مشاهدة الشرح على يوتيوب
 </a>
 
@@ -1210,14 +1337,43 @@ onclick="incrementDownload('tutorial3')">
 شرح بديل وطريقة أخرى للعب الجماعي أونلاين باستخدام أدوات وبرامج مختلفة لضمان تجربة لعب مستقرة وسريعة.
 </p>
 
-<div class="download-count" id="count-tutorial4">
-    📥 جاري تحميل العدد... <span class="loading-dot"></span>
-</div>
-
 <a class="btn btn-youtube"
 href="https://www.youtube.com/watch?v=sLiEn6Qm5Is"
-target="_blank"
-onclick="incrementDownload('tutorial4')">
+target="_blank">
+▶️ مشاهدة الشرح على يوتيوب
+</a>
+
+</div>
+
+<!-- شرح 5 - أفضل 10 مودات -->
+<div class="card tutorial-card">
+
+<h3>🏆 أفضل 10 مودات وطريقة تحميلهم <span class="badge badge-new">✨ جديد</span></h3>
+
+<p>
+فيديو يستعرض أفضل 10 مودات للعبة جنرال زيرو أور مع شرح طريقة تحميل وتثبيت كل مود بالتفصيل، لتجربة لعب جديدة وممتعة.
+</p>
+
+<a class="btn btn-youtube"
+href="https://www.youtube.com/watch?v=3vHd1wULb90&t=157s"
+target="_blank">
+▶️ مشاهدة الشرح على يوتيوب
+</a>
+
+</div>
+
+<!-- شرح 6 - كل ما يحتاجه اللاعب -->
+<div class="card tutorial-card">
+
+<h3>📦 كل ما يحتاجه لاعب جنرال <span class="badge badge-popular">🔥 شامل</span></h3>
+
+<p>
+فيديو شامل يغطي كل ما يحتاجه أي لاعب للعبة جنرال زيرو أور: تحميل اللعبة، الانضمام إلى المجتمع، اللعب أونلاين، تحميل الخرائط، المشاركة في البطولات، وغيرها الكثير.
+</p>
+
+<a class="btn btn-youtube"
+href="https://youtu.be/JuaUXvyxD8E?si=70KdW2pARibM2Ppl"
+target="_blank">
 ▶️ مشاهدة الشرح على يوتيوب
 </a>
 
@@ -1332,14 +1488,17 @@ onclick="incrementDownload('tutorial4')">
 <h3>🆕 ما الجديد</h3>
 
 <p>
-آخر تحديث للموقع 29/4/2026<br>
+آخر تحديث للموقع 30/4/2026<br>
+☀️ أضيف الوضع النهاري (Light Mode)<br>
 ✨ أضيفت مجموعة الخرائط البحرية Naval<br>
-🗣️ أضيف ملف تعريب أصوات وحدات GLA<br>
-🎓 أضيف قسم شروحات مهمة مع 4 فيديوهات تعليمية<br>
+🗣️ أضيف ملف تعريب أصوات وحدات GLA مع أزرار نسخ المسارات<br>
+🎓 أضيف قسم شروحات مهمة مع 6 فيديوهات تعليمية<br>
+🏆 أضيف شرح أفضل 10 مودات<br>
+📦 أضيف شرح كل ما يحتاجه لاعب جنرال<br>
+🎮 أضيف رابط سيرفر ديسكورد<br>
 🔍 أضيف شريط البحث السريع<br>
 📊 أضيف نظام عداد تحميلات حقيقي (CountAPI)<br>
 🏷️ أضيفت إشارات الحالة (جديد / شائع / محدث)<br>
-🔗 أضيفت روابط تحميل متعددة (درايف + ميديا فاير)<br>
 ⬆️ أضيف زر الرجوع للأعلى<br>
 🔧 أضيف قسم حل المشاكل الشائعة<br>
 🎨 تحسين وتحديث شكل القائمة الجانبية
@@ -1384,6 +1543,17 @@ target="_blank">
 </a>
 </p>
 
+<br>
+
+<p>
+🎮 ديسكورد:
+<a class="btn btn-discord"
+href="https://discord.gg/kHPapTE68b"
+target="_blank">
+💬 الانضمام إلى سيرفر ديسكورد
+</a>
+</p>
+
 </div>
 
 </section>
@@ -1403,6 +1573,7 @@ const menuBtn = document.querySelector('.menu-btn');
 const sidebar = document.querySelector('.sidebar');
 const overlay = document.querySelector('.overlay');
 const backToTopBtn = document.querySelector('.back-to-top');
+const themeToggle = document.querySelector('.theme-toggle');
 
 function toggleSidebar(){
     menuBtn.classList.toggle('active');
@@ -1480,13 +1651,36 @@ function scrollToTop(){
     window.scrollTo({top:0, behavior:'smooth'});
 }
 
+// ========= نظام تبديل الوضع النهاري / الليلي =========
+function toggleTheme(){
+    document.body.classList.toggle('light-mode');
+    
+    if(document.body.classList.contains('light-mode')){
+        themeToggle.innerHTML = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        themeToggle.innerHTML = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// تحميل الوضع المحفوظ
+function loadTheme(){
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light'){
+        document.body.classList.add('light-mode');
+        themeToggle.innerHTML = '☀️';
+    } else {
+        themeToggle.innerHTML = '🌙';
+    }
+}
+
 // ==========================================
 // ========= نظام العداد الحقيقي CountAPI =========
 // ==========================================
 
 const NAMESPACE_PREFIX = 'general-fix';
 
-// قائمة بجميع المفاتيح والعناصر المرتبطة بها
 const counterElements = {
     'game-download': ['count-game-download', 'count-game-download2'],
     'gen-online': ['count-gen-online'],
@@ -1496,14 +1690,9 @@ const counterElements = {
     'sahel': ['count-sahel'],
     'naval': ['count-naval'],
     'mapini': ['count-mapini'],
-    'gla-arabic': ['count-gla-arabic'],
-    'tutorial1': ['count-tutorial1'],
-    'tutorial2': ['count-tutorial2'],
-    'tutorial3': ['count-tutorial3'],
-    'tutorial4': ['count-tutorial4']
+    'gla-arabic': ['count-gla-arabic']
 };
 
-// دالة جلب العدد من CountAPI
 async function fetchCount(key){
     try {
         const response = await fetch(`https://api.countapi.xyz/get/${NAMESPACE_PREFIX}/${key}`);
@@ -1515,7 +1704,6 @@ async function fetchCount(key){
     }
 }
 
-// دالة زيادة العداد عند الضغط
 async function incrementDownload(key){
     try {
         const response = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE_PREFIX}/${key}`);
@@ -1526,7 +1714,6 @@ async function incrementDownload(key){
     }
 }
 
-// دالة تحديث عرض العدد
 function updateCountDisplay(key, value){
     const elementIds = counterElements[key];
     if(!elementIds) return;
@@ -1539,7 +1726,6 @@ function updateCountDisplay(key, value){
     });
 }
 
-// دالة عرض خطأ في حال فشل التحميل
 function showCountError(key){
     const elementIds = counterElements[key];
     if(!elementIds) return;
@@ -1552,7 +1738,6 @@ function showCountError(key){
     });
 }
 
-// تحميل جميع العدادات عند فتح الصفحة
 async function loadAllCounts(){
     for(const [key, elementIds] of Object.entries(counterElements)){
         const count = await fetchCount(key);
@@ -1564,9 +1749,9 @@ async function loadAllCounts(){
     }
 }
 
-// تشغيل تحميل العدادات
+// تهيئة الصفحة
+loadTheme();
 loadAllCounts();
-
 showHome();
 
 </script>
