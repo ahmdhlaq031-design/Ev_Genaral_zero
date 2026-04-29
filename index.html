@@ -44,12 +44,8 @@ body::before{
 }
 
 @keyframes moveBg{
-    0%{
-        transform:scale(1);
-    }
-    100%{
-        transform:scale(1.08);
-    }
+    0%{ transform:scale(1); }
+    100%{ transform:scale(1.08); }
 }
 
 /* شبكة خفيفة */
@@ -64,7 +60,51 @@ body::after{
     z-index:-1;
 }
 
-/* الهيدر */
+/* ========= شريط البحث ========= */
+.search-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:25px auto 10px;
+    width:min(600px,90%);
+    position:relative;
+}
+
+.search-container input{
+    width:100%;
+    padding:16px 22px;
+    padding-left:55px;
+    border-radius:999px;
+    border:1.5px solid rgba(255,255,255,0.12);
+    background:rgba(20,24,40,0.75);
+    backdrop-filter:blur(20px);
+    color:white;
+    font-family:'Cairo',sans-serif;
+    font-size:15px;
+    font-weight:500;
+    transition:0.35s;
+    outline:none;
+}
+
+.search-container input::placeholder{
+    color:#6b728a;
+}
+
+.search-container input:focus{
+    border-color:rgba(0,255,200,0.45);
+    box-shadow:0 0 30px rgba(0,255,200,0.12);
+    background:rgba(25,30,50,0.85);
+}
+
+.search-container .search-icon{
+    position:absolute;
+    left:16px;
+    font-size:20px;
+    color:#6b728a;
+    pointer-events:none;
+}
+
+/* ========= الهيدر ========= */
 header{
     position:sticky;
     top:0;
@@ -128,7 +168,6 @@ header h1{
     transition:0.3s;
 }
 
-/* زر X عند الفتح */
 .menu-btn.active span:nth-child(1){
     transform:rotate(45deg) translate(5px,5px);
 }
@@ -143,17 +182,17 @@ header h1{
 .sidebar{
     position:fixed;
     top:0;
-    right:-340px;
-    width:310px;
+    right:-360px;
+    width:320px;
     height:100vh;
     background:rgba(10,14,28,0.97);
     backdrop-filter:blur(35px);
     border-left:1px solid rgba(255,255,255,0.06);
     z-index:150;
-    padding:85px 18px 30px 18px;
+    padding:85px 14px 30px 14px;
     display:flex;
     flex-direction:column;
-    gap:8px;
+    gap:6px;
     transition:0.45s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow:-15px 0 60px rgba(0,0,0,0.55);
     overflow-y:auto;
@@ -163,22 +202,20 @@ header h1{
     right:0;
 }
 
-/* عنوان القائمة */
 .sidebar-title{
-    color:#8f96ad;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:2px;
+    color:#6b728a;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:3px;
     text-transform:uppercase;
-    margin-bottom:4px;
-    padding-right:8px;
+    margin-bottom:2px;
+    padding-right:14px;
 }
 
-/* خلفية داكنة عند فتح القائمة */
 .overlay{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.6);
+    background:rgba(0,0,0,0.65);
     z-index:140;
     opacity:0;
     pointer-events:none;
@@ -190,90 +227,105 @@ header h1{
     pointer-events:auto;
 }
 
-/* أزرار القائمة بتصميم جديد */
+/* أزرار القائمة */
 .sidebar a{
     display:flex;
     align-items:center;
-    gap:14px;
-    padding:15px 18px;
-    border-radius:16px;
+    gap:16px;
+    padding:16px 20px;
+    border-radius:20px;
     text-decoration:none;
-    color:#cfd2e3;
+    color:#bcc0d0;
     font-size:14px;
     font-weight:700;
     cursor:pointer;
-    border:1px solid rgba(255,255,255,0.05);
-    background:rgba(255,255,255,0.015);
-    transition:0.3s;
+    border:1.5px solid transparent;
+    background:rgba(255,255,255,0.02);
+    transition:all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     position:relative;
     overflow:hidden;
 }
 
-/* أيقونة داخل كل زر */
+.sidebar a::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    background:linear-gradient(135deg, rgba(0,255,200,0.06), rgba(0,166,255,0.06), rgba(130,0,255,0.06));
+    opacity:0;
+    transition:0.4s;
+}
+
+.sidebar a:hover::after{
+    opacity:1;
+}
+
 .sidebar a .icon{
     display:flex;
     align-items:center;
     justify-content:center;
-    width:42px;
-    height:42px;
-    border-radius:13px;
+    width:46px;
+    height:46px;
+    border-radius:50%;
     background:rgba(255,255,255,0.04);
-    font-size:19px;
+    border:1px solid rgba(255,255,255,0.08);
+    font-size:20px;
     flex-shrink:0;
-    transition:0.3s;
+    transition:0.4s;
+    position:relative;
+    z-index:1;
+    backdrop-filter:blur(5px);
 }
 
-/* لون مختلف لكل زر */
-.sidebar a:nth-child(2) .icon{ background:rgba(0,255,200,0.10); }
-.sidebar a:nth-child(3) .icon{ background:rgba(0,166,255,0.10); }
-.sidebar a:nth-child(4) .icon{ background:rgba(255,140,0,0.10); }
-.sidebar a:nth-child(5) .icon{ background:rgba(130,0,255,0.10); }
-.sidebar a:nth-child(6) .icon{ background:rgba(255,60,100,0.10); }
+.sidebar a:nth-child(2) .icon{ background:rgba(0,255,200,0.10); border-color:rgba(0,255,200,0.18); }
+.sidebar a:nth-child(3) .icon{ background:rgba(0,166,255,0.10); border-color:rgba(0,166,255,0.18); }
+.sidebar a:nth-child(4) .icon{ background:rgba(0,200,255,0.10); border-color:rgba(0,200,255,0.18); }
+.sidebar a:nth-child(5) .icon{ background:rgba(255,140,0,0.10); border-color:rgba(255,140,0,0.18); }
+.sidebar a:nth-child(6) .icon{ background:rgba(130,0,255,0.10); border-color:rgba(130,0,255,0.18); }
+.sidebar a:nth-child(7) .icon{ background:rgba(255,60,100,0.10); border-color:rgba(255,60,100,0.18); }
 
 .sidebar a:hover{
-    background:rgba(0,255,200,0.08);
-    border-color:rgba(0,255,200,0.25);
     color:white;
-    transform:translateX(-5px);
-    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    transform:translateX(-6px);
+    border-color:rgba(255,255,255,0.12);
+    background:rgba(255,255,255,0.04);
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
 }
 
 .sidebar a:hover .icon{
-    background:rgba(0,255,200,0.18);
-    box-shadow:0 0 18px rgba(0,255,200,0.12);
+    transform:scale(1.08);
+    box-shadow:0 0 25px rgba(0,255,200,0.18);
+    border-color:rgba(0,255,200,0.35);
 }
 
-/* خط فاصل */
 .sidebar-divider{
     height:1px;
-    background:rgba(255,255,255,0.05);
-    margin:6px 8px;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    margin:8px 10px;
 }
 
-/* زر خاص للمشاكل */
 .sidebar a.problems-btn{
-    border:1px solid rgba(255,70,110,0.25);
-    background:rgba(255,70,110,0.04);
+    border:1.5px solid rgba(255,80,120,0.25);
+    background:rgba(255,80,120,0.03);
 }
 
 .sidebar a.problems-btn .icon{
-    background:rgba(255,70,110,0.12);
+    background:rgba(255,80,120,0.12);
+    border-color:rgba(255,80,120,0.22);
 }
 
 .sidebar a.problems-btn:hover{
-    border-color:rgba(255,70,110,0.5);
-    background:rgba(255,70,110,0.10);
-    box-shadow:0 8px 25px rgba(255,70,110,0.12);
+    border-color:rgba(255,80,120,0.5);
+    background:rgba(255,80,120,0.07);
 }
-
 .sidebar a.problems-btn:hover .icon{
-    background:rgba(255,70,110,0.22);
-    box-shadow:0 0 18px rgba(255,70,110,0.15);
+    box-shadow:0 0 25px rgba(255,80,120,0.2);
+    border-color:rgba(255,80,120,0.4);
 }
 
-/* الأقسام */
+/* ========= الأقسام ========= */
 section{
-    padding:90px 20px;
+    padding:70px 20px 90px;
 }
 
 section h2{
@@ -281,6 +333,44 @@ section h2{
     margin-bottom:45px;
     text-align:center;
     font-weight:900;
+}
+
+/* ========= إشارات الحالة ========= */
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 12px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:0.5px;
+    margin-right:8px;
+    vertical-align:middle;
+}
+
+.badge-new{
+    background:rgba(0,255,200,0.15);
+    color:#00ffc8;
+    border:1px solid rgba(0,255,200,0.30);
+    animation:pulseBadge 2s infinite;
+}
+
+.badge-popular{
+    background:rgba(255,180,50,0.15);
+    color:#ffb832;
+    border:1px solid rgba(255,180,50,0.30);
+}
+
+.badge-updated{
+    background:rgba(0,166,255,0.15);
+    color:#00a6ff;
+    border:1px solid rgba(0,166,255,0.30);
+}
+
+@keyframes pulseBadge{
+    0%,100%{ box-shadow:0 0 8px rgba(0,255,200,0.15); }
+    50%{ box-shadow:0 0 18px rgba(0,255,200,0.30); }
 }
 
 /* البطاقات */
@@ -326,6 +416,52 @@ section h2{
     line-height:2;
 }
 
+/* ========= عداد التحميلات ========= */
+.download-count{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:#8f96ad;
+    font-size:12px;
+    margin-top:6px;
+}
+
+.download-count span{
+    color:#00ffc8;
+    font-weight:700;
+}
+
+.download-count .loading-dot{
+    display:inline-block;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#00ffc8;
+    animation:loadingPulse 0.8s infinite alternate;
+}
+
+@keyframes loadingPulse{
+    from{ opacity:0.3; }
+    to{ opacity:1; }
+}
+
+/* ========= روابط تحميل متعددة ========= */
+.download-links{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.download-links .btn{
+    margin-top:0;
+    flex:1;
+    min-width:140px;
+    justify-content:center;
+    font-size:13px;
+    padding:13px 20px;
+}
+
 /* بطاقة المشاكل */
 .problem-card{
     border:1px solid rgba(255,100,130,0.20);
@@ -349,7 +485,6 @@ section h2{
     font-size:17px;
 }
 
-/* قائمة الخطوات */
 .steps-list{
     margin-top:10px;
     padding-right:20px;
@@ -434,6 +569,7 @@ section h2{
     transition:0.35s ease;
     box-shadow:0 10px 25px rgba(0,255,200,0.22);
     cursor:pointer;
+    border:none;
 }
 
 .btn::before{
@@ -460,11 +596,34 @@ section h2{
     transform:scale(0.96);
 }
 
-/* أزرار صغيرة */
-.btn-sm{
-    padding:10px 20px;
-    font-size:12px;
-    margin-top:0;
+/* زر يوتيوب */
+.btn-youtube{
+    background:linear-gradient(135deg,#ff416c,#ff4b2b);
+    box-shadow:0 10px 25px rgba(255,65,108,0.22);
+}
+
+.btn-youtube:hover{
+    box-shadow:0 15px 35px rgba(255,65,108,0.35), 0 0 50px rgba(255,75,43,0.18);
+}
+
+/* زر أزرق */
+.btn-blue{
+    background:linear-gradient(135deg,#00a6ff,#7b5cff);
+    box-shadow:0 10px 25px rgba(0,166,255,0.22);
+}
+
+.btn-blue:hover{
+    box-shadow:0 15px 35px rgba(0,166,255,0.35), 0 0 50px rgba(123,92,255,0.18);
+}
+
+/* بطاقة شرح */
+.tutorial-card{
+    border:1px solid rgba(255,180,50,0.20);
+    background:rgba(25,22,18,0.65);
+}
+
+.tutorial-card h3{
+    color:#ffb832;
 }
 
 /* الملاحظات */
@@ -476,6 +635,12 @@ section h2{
     padding:14px 16px;
     border-radius:16px;
     line-height:1.9;
+}
+
+.note-info{
+    background:rgba(0,200,255,0.08);
+    border:1px solid rgba(0,200,255,0.20);
+    color:#7ad4ff;
 }
 
 /* الشات */
@@ -503,6 +668,41 @@ section h2{
     display:none;
 }
 
+/* ========= زر الرجوع للأعلى ========= */
+.back-to-top{
+    position:fixed;
+    bottom:30px;
+    left:30px;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:rgba(0,255,200,0.12);
+    border:1.5px solid rgba(0,255,200,0.30);
+    color:#00ffc8;
+    font-size:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:300;
+    opacity:0;
+    pointer-events:none;
+    transition:0.35s;
+    backdrop-filter:blur(10px);
+}
+
+.back-to-top.visible{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.back-to-top:hover{
+    background:rgba(0,255,200,0.20);
+    border-color:rgba(0,255,200,0.5);
+    box-shadow:0 0 25px rgba(0,255,200,0.20);
+    transform:translateY(-5px);
+}
+
 /* فوتر */
 footer{
     padding:30px 15px;
@@ -525,24 +725,23 @@ footer{
     }
 
     .sidebar{
-        width:280px;
+        width:290px;
     }
 
     .sidebar a{
-        padding:13px 15px;
+        padding:14px 16px;
         font-size:13px;
-        gap:10px;
+        gap:12px;
     }
 
     .sidebar a .icon{
-        width:36px;
-        height:36px;
-        font-size:17px;
-        border-radius:10px;
+        width:40px;
+        height:40px;
+        font-size:18px;
     }
 
     section{
-        padding:70px 15px;
+        padding:60px 15px 80px;
     }
 
     section h2{
@@ -571,6 +770,24 @@ footer{
         font-size:11px;
         padding:8px 12px;
     }
+
+    .download-links .btn{
+        min-width:100%;
+    }
+
+    .back-to-top{
+        bottom:20px;
+        left:20px;
+        width:42px;
+        height:42px;
+        font-size:18px;
+    }
+
+    .search-container input{
+        padding:14px 18px;
+        padding-left:48px;
+        font-size:14px;
+    }
 }
 
 </style>
@@ -594,9 +811,9 @@ footer{
 <!-- خلفية داكنة -->
 <div class="overlay" onclick="toggleSidebar()"></div>
 
-<!-- القائمة الجانبية بتصميم جديد -->
+<!-- القائمة الجانبية -->
 <div class="sidebar">
-    <div class="sidebar-title">• القائمة الرئيسية •</div>
+    <div class="sidebar-title">✦ القائمة الرئيسية</div>
 
     <a onclick="navigateTo('home')">
         <span class="icon">🏠</span>
@@ -605,6 +822,10 @@ footer{
     <a onclick="navigateTo('services')">
         <span class="icon">📁</span>
         ملفات مهمة للتحميل
+    </a>
+    <a onclick="navigateTo('tutorials')">
+        <span class="icon">🎓</span>
+        شروحات مهمة
     </a>
     <a onclick="navigateTo('problems')" class="problems-btn">
         <span class="icon">🔧</span>
@@ -623,6 +844,12 @@ footer{
     </a>
 </div>
 
+<!-- شريط البحث -->
+<div class="search-container">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="ابحث عن ملف، شرح، أو مشكلة..." oninput="searchSite()">
+</div>
+
 <!-- الرئيسية -->
 <section id="home">
 
@@ -630,17 +857,24 @@ footer{
 
 <div class="card">
 
-<h3>🎮 تحميل اللعبة</h3>
+<h3>🎮 تحميل اللعبة <span class="badge badge-popular">🔥 شائع</span></h3>
 
 <p>
 يمكنك تحميل لعبة جنرال زيرو أور مجاناً والبدء باللعب مباشرة.
 </p>
 
-<a class="btn"
-href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk"
-target="_blank">
-تحميل اللعبة
-</a>
+<div class="download-count" id="count-game-download">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
+<div class="download-links">
+    <a class="btn" href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk" target="_blank" onclick="incrementDownload('game-download')">
+        📥 درايف
+    </a>
+    <a class="btn btn-blue" href="https://www.mediafire.com/" target="_blank" onclick="incrementDownload('game-download')">
+        📥 ميديا فاير (احتياطي)
+    </a>
+</div>
 
 </div>
 
@@ -664,35 +898,47 @@ class="cbox-iframe">
 <!-- الملفات -->
 <section id="services" class="hidden">
 
-<h2>ملفات مهمة للتحميل</h2>
+<h2>📁 ملفات مهمة للتحميل</h2>
 
 <div class="card">
 
-<h3>🎮 تحميل اللعبة</h3>
+<h3>🎮 تحميل اللعبة <span class="badge badge-popular">🔥 شائع</span></h3>
 
 <p>
 تحميل لعبة جنرال زيرو أور كاملة مجاناً.
 </p>
 
-<a class="btn"
-href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk"
-target="_blank">
-تحميل اللعبة
-</a>
+<div class="download-count" id="count-game-download2">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
+<div class="download-links">
+    <a class="btn" href="https://drive.google.com/file/d/1XRhhlYYnTIrHJ8vY6r_ixO_4CBTKs46y/view?usp=drivesdk" target="_blank" onclick="incrementDownload('game-download')">
+        📥 درايف
+    </a>
+    <a class="btn btn-blue" href="https://www.mediafire.com/" target="_blank" onclick="incrementDownload('game-download')">
+        📥 ميديا فاير (احتياطي)
+    </a>
+</div>
 
 </div>
 
 <div class="card">
 
-<h3>🌐 Genarals Online</h3>
+<h3>🌐 Genarals Online <span class="badge badge-new">✨ جديد</span></h3>
 
 <p>
 النسخة الحديثة من Genaral Zero Hour من مطورين مجتمع اللعبة.
 </p>
 
+<div class="download-count" id="count-gen-online">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
 <a class="btn"
 href="https://www.playgenerals.online/#download"
-target="_blank">
+target="_blank"
+onclick="incrementDownload('gen-online')">
 تحميل Genarals Online
 </a>
 
@@ -706,9 +952,14 @@ target="_blank">
 تطبيق جيد للعب اونلاين لكن Genarals Online أسرع وأفضل.
 </p>
 
+<div class="download-count" id="count-radmin">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
 <a class="btn"
 href="https://www.radmin-vpn.com/"
-target="_blank">
+target="_blank"
+onclick="incrementDownload('radmin')">
 تحميل Radmin VPN
 </a>
 
@@ -716,15 +967,20 @@ target="_blank">
 
 <div class="card">
 
-<h3>🛠️ GenPatcher</h3>
+<h3>🛠️ GenPatcher <span class="badge badge-updated">🔄 محدث</span></h3>
 
 <p>
 تطبيق إصلاحات مهم لتشغيل اللعبة بدون مشاكل.
 </p>
 
+<div class="download-count" id="count-genpatcher">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
 <a class="btn"
 href="https://legi.cc/genpatcher/"
-target="_blank">
+target="_blank"
+onclick="incrementDownload('genpatcher')">
 تحميل GenPatcher
 </a>
 
@@ -742,9 +998,14 @@ target="_blank">
 ⚠ يجب وضعه عند جميع اللاعبين لتجنب رسالة Mismatch
 </div>
 
+<div class="download-count" id="count-genboss">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
 <a class="btn"
 href="https://drive.google.com/file/d/1xO8sv5z-QQNsfawE1s3N8cgzFJqQKyEp/view?usp=drivesdk"
-target="_blank">
+target="_blank"
+onclick="incrementDownload('genboss')">
 تحميل General Boss
 </a>
 
@@ -752,7 +1013,7 @@ target="_blank">
 
 <div class="card">
 
-<h3>🗺️ Sahel Maps</h3>
+<h3>🗺️ Sahel Maps <span class="badge badge-popular">🔥 شائع</span></h3>
 
 <p>
 800 خريطة إضافية يمكنك تثبيتها داخل اللعبة.
@@ -762,7 +1023,6 @@ target="_blank">
 ⚠ المسار الصحيح لوضع الخرائط:
 </div>
 
-<!-- مسار قابل للنسخ -->
 <div class="path-container">
     <span class="path-text">Documents\Command and Conquer Generals Zero Hour\Maps</span>
     <button class="copy-btn" onclick="copyPath(this, 'Documents\\Command and Conquer Generals Zero Hour\\Maps')">
@@ -770,9 +1030,14 @@ target="_blank">
     </button>
 </div>
 
+<div class="download-count" id="count-sahel">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
 <a class="btn"
 href="https://drive.google.com/file/d/1FvKNHHaSFJ6UzdsrzfQVP5exzCKqdzNX/view"
-target="_blank">
+target="_blank"
+onclick="incrementDownload('sahel')">
 تحميل Sahel Maps
 </a>
 
@@ -780,17 +1045,16 @@ target="_blank">
 
 <div class="card">
 
-<h3>🚢 Naval Maps</h3>
+<h3>🚢 Naval Maps <span class="badge badge-new">✨ جديد</span></h3>
 
 <p>
-مجموعة خرائط فيها حرب السفن ووحدات بحرية. ما عليك سوى تحميل الملف وفك ضغطه، يظهر لك عدة ملفات ومجلد اسمه Maps، افتح المجلد وانسخ المجلدات بداخله والصقها في المسار:
+مجموعة خرائط فيها حرب السفن ووحدات بحرية.
 </p>
 
 <div class="note">
 ⚠ المسار الصحيح لوضع الخرائط البحرية:
 </div>
 
-<!-- مسار قابل للنسخ -->
 <div class="path-container">
     <span class="path-text">Documents\Command and Conquer Generals Zero Hour\Maps</span>
     <button class="copy-btn" onclick="copyPath(this, 'Documents\\Command and Conquer Generals Zero Hour\\Maps')">
@@ -798,9 +1062,14 @@ target="_blank">
     </button>
 </div>
 
+<div class="download-count" id="count-naval">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
 <a class="btn"
 href="https://drive.google.com/file/d/1enHOJre_RYVax3EqTUzCP7d34-zhc6Dc/view?usp=drivesdk"
-target="_blank">
+target="_blank"
+onclick="incrementDownload('naval')">
 تحميل خرائط Naval
 </a>
 
@@ -818,10 +1087,138 @@ target="_blank">
 ⚠ يجب وضع الملف عند جميع اللاعبين أثناء اللعب الجماعي لتجنب Mismatch
 </div>
 
+<div class="download-count" id="count-mapini">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
 <a class="btn"
 href="https://drive.google.com/file/d/13xgL7ySgyzmc2tHIaZTS03aUJ7OI3PVg/view?usp=drivesdk"
-target="_blank">
+target="_blank"
+onclick="incrementDownload('mapini')">
 تحميل Map.ini
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>🗣️ تعريب أصوات وحدات GLA <span class="badge badge-new">✨ جديد</span></h3>
+
+<p>
+هذا الملف يجعل وحدات جيش <strong>GLA</strong> تتكلم بالعربية. ما عليك سوى وضعه في المسار:
+</p>
+
+<div class="note note-info">
+📂 <strong>المسارات الممكنة:</strong><br>
+• للنسخة الأصلية: <code style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px; direction:ltr; display:inline-block; margin-top:4px;">C:\Program Files (x86)\EA Games\Command & Conquer Generals Zero Hour</code><br><br>
+• لنسخة R.G Machine: <code style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px; direction:ltr; display:inline-block; margin-top:4px;">C:\Program Files (x86)\R.G Machine\Command & Conquer Generals Zero Hour</code><br><br>
+• أحياناً يجب وضعه في المسار الفرعي: <code style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px; direction:ltr; display:inline-block; margin-top:4px;">Zero Hour\Data\Audio\Speech\Arabic\GLA</code>
+</div>
+
+<div class="download-count" id="count-gla-arabic">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
+<a class="btn"
+href="https://www.moddb.com/addons/start/278386"
+target="_blank"
+onclick="incrementDownload('gla-arabic')">
+🗣️ تحميل ملف التعريب
+</a>
+
+</div>
+
+</section>
+
+<!-- ========= قسم الشروحات ========= -->
+<section id="tutorials" class="hidden">
+
+<h2>🎓 شروحات مهمة</h2>
+
+<!-- شرح 1 -->
+<div class="card tutorial-card">
+
+<h3>📥 شرح تحميل اللعبة من موقعها الرسمي وتطبيق إصلاحاتها <span class="badge badge-popular">🔥 الأكثر مشاهدة</span></h3>
+
+<p>
+فيديو شامل يشرح طريقة تحميل لعبة <strong>Command & Conquer Generals Zero Hour</strong> من موقعها الرسمي وتثبيت جميع الإصلاحات اللازمة لتشغيلها بدون مشاكل على الأجهزة الحديثة.
+</p>
+
+<div class="download-count" id="count-tutorial1">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
+<a class="btn btn-youtube"
+href="https://www.youtube.com/watch?v=7jbF9zxqLdw"
+target="_blank"
+onclick="incrementDownload('tutorial1')">
+▶️ مشاهدة الشرح على يوتيوب
+</a>
+
+</div>
+
+<!-- شرح 2 -->
+<div class="card tutorial-card">
+
+<h3>🌐 شرح اللعب أونلاين</h3>
+
+<p>
+فيديو يشرح طريقة اللعب الجماعي أونلاين خطوة بخطوة، وكيفية الاتصال باللاعبين الآخرين بسهولة دون مشاكل.
+</p>
+
+<div class="download-count" id="count-tutorial2">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
+<a class="btn btn-youtube"
+href="https://www.youtube.com/watch?v=sLiEn6Qm5Is"
+target="_blank"
+onclick="incrementDownload('tutorial2')">
+▶️ مشاهدة الشرح على يوتيوب
+</a>
+
+</div>
+
+<!-- شرح 3 -->
+<div class="card tutorial-card">
+
+<h3>🛠️ طريقة إصلاح جميع الأخطاء</h3>
+
+<p>
+فيديو شامل يشرح كيفية إصلاح جميع الأخطاء الشائعة في لعبة جنرال زيرو أور، بما فيها مشاكل التوافق والشاشة السوداء والتحطم.
+</p>
+
+<div class="download-count" id="count-tutorial3">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
+<a class="btn btn-youtube"
+href="https://www.youtube.com/watch?v=sghBzS6ijsQ"
+target="_blank"
+onclick="incrementDownload('tutorial3')">
+▶️ مشاهدة الشرح على يوتيوب
+</a>
+
+</div>
+
+<!-- شرح 4 -->
+<div class="card tutorial-card">
+
+<h3>🎮 طريقة أخرى للعب General Zero Hour أونلاين</h3>
+
+<p>
+شرح بديل وطريقة أخرى للعب الجماعي أونلاين باستخدام أدوات وبرامج مختلفة لضمان تجربة لعب مستقرة وسريعة.
+</p>
+
+<div class="download-count" id="count-tutorial4">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
+<a class="btn btn-youtube"
+href="https://www.youtube.com/watch?v=sLiEn6Qm5Is"
+target="_blank"
+onclick="incrementDownload('tutorial4')">
+▶️ مشاهدة الشرح على يوتيوب
 </a>
 
 </div>
@@ -833,7 +1230,6 @@ target="_blank">
 
 <h2>🔧 حل المشاكل الشائعة</h2>
 
-<!-- المشكلة الأولى -->
 <div class="card problem-card">
 
 <h3>⚠️ المشكلة الأولى: Mismatch</h3>
@@ -860,25 +1256,21 @@ target="_blank">
 
 </div>
 
-<!-- المشكلة الثانية -->
 <div class="card problem-card">
 
 <h3>🛡️ المشكلة الثانية: فشل تثبيت GenPatcher</h3>
 
 <p>
-أحياناً يفشل تثبيت تطبيق <strong>GenPatcher</strong> بسبب معاملته من جدران الحماية (Firewall) وبرامج مكافحة الفيروسات كفيروس أو برنامج ضار، مما يمنع تشغيله أو إكمال التثبيت.
+أحياناً يفشل تثبيت تطبيق <strong>GenPatcher</strong> بسبب معاملته من جدران الحماية وبرامج مكافحة الفيروسات كفيروس أو برنامج ضار.
 </p>
 
 <div class="solution">
 <p><strong>💡 الحل:</strong></p>
-<p>
-لحل هذه المشكلة، اتبع الخطوات التالية:
-</p>
 <ul class="steps-list">
     <li>🚫 <strong>أوقف جميع جدران الحماية</strong> (Windows Defender Firewall) بشكل مؤقت.</li>
     <li>🛡️ <strong>أوقف برنامج مكافحة الفيروسات</strong> (Antivirus) مؤقتاً.</li>
     <li>⚙️ <strong>امنح التطبيق جميع الصلاحيات</strong> (Permissions) المطلوبة.</li>
-    <li>👑 <strong>شغّل التطبيق كمسؤول</strong> (Run as Administrator) من خلال الضغط بزر الفأرة الأيمن على ملف التثبيت واختيار "تشغيل كمسؤول".</li>
+    <li>👑 <strong>شغّل التطبيق كمسؤول</strong> (Run as Administrator).</li>
 </ul>
 </div>
 
@@ -888,23 +1280,22 @@ target="_blank">
 
 </div>
 
-<!-- المشكلة الثالثة: Same Series -->
 <div class="card problem-card">
 
 <h3>🔄 المشكلة الثالثة: Same Series</h3>
 
 <p>
-ظهور رسالة <strong>"Same Series"</strong> عند محاولة الانضمام إلى غرفة أو بدء لعبة جماعية. تحدث هذه المشكلة بسبب اختلاف إصدارات اللعبة بين اللاعبين، أو استخدام مودات وملفات مختلفة مثل <strong>Map.ini</strong> أو <strong>General Boss</strong> غير متطابقة بين جميع اللاعبين.
+ظهور رسالة <strong>"Same Series"</strong> عند محاولة الانضمام إلى غرفة أو بدء لعبة جماعية.
 </p>
 
 <div class="solution">
 <p><strong>💡 الحل:</strong></p>
 <ul class="steps-list">
-    <li>✅ <strong>تأكد من تطابق إصدارات اللعبة</strong> بين جميع اللاعبين. يفضل استخدام <strong>Genarals Online</strong> لضمان توحيد الإصدار.</li>
-    <li>📁 <strong>تأكد من وجود نفس الملفات الإضافية</strong> عند جميع اللاعبين (مثل Map.ini أو General Boss). إذا كان أحد اللاعبين يملك ملفات إضافية والآخر لا يملكها، ستظهر رسالة Same Series.</li>
-    <li>🗑️ <strong>احذف ملف Map.ini</strong> من مجلد اللعبة إذا كنت لا تحتاجه، أو تأكد من أن جميع اللاعبين يملكون نفس النسخة منه.</li>
-    <li>🛠️ <strong>استخدم GenPatcher</strong> لإصلاح ملفات اللعبة وإعادتها إلى الوضع الافتراضي المتوافق.</li>
-    <li>🔄 <strong>أعد تشغيل اللعبة</strong> بعد إجراء أي تعديلات على الملفات.</li>
+    <li>✅ <strong>تأكد من تطابق إصدارات اللعبة</strong> بين جميع اللاعبين.</li>
+    <li>📁 <strong>تأكد من وجود نفس الملفات الإضافية</strong> عند جميع اللاعبين.</li>
+    <li>🗑️ <strong>احذف ملف Map.ini</strong> إذا كنت لا تحتاجه.</li>
+    <li>🛠️ <strong>استخدم GenPatcher</strong> لإصلاح ملفات اللعبة.</li>
+    <li>🔄 <strong>أعد تشغيل اللعبة</strong> بعد إجراء أي تعديلات.</li>
 </ul>
 </div>
 
@@ -943,10 +1334,15 @@ target="_blank">
 <p>
 آخر تحديث للموقع 29/4/2026<br>
 ✨ أضيفت مجموعة الخرائط البحرية Naval<br>
-🔧 أضيف قسم حل المشاكل الشائعة مع ثلاث مشكلات وحلولها<br>
-🔄 أضيفت مشكلة Same Series وطريقة حلها<br>
-📋 أضيفت أزرار نسخ المسارات في قسم الملفات<br>
-🎨 تحسين لمظهر الموقع
+🗣️ أضيف ملف تعريب أصوات وحدات GLA<br>
+🎓 أضيف قسم شروحات مهمة مع 4 فيديوهات تعليمية<br>
+🔍 أضيف شريط البحث السريع<br>
+📊 أضيف نظام عداد تحميلات حقيقي (CountAPI)<br>
+🏷️ أضيفت إشارات الحالة (جديد / شائع / محدث)<br>
+🔗 أضيفت روابط تحميل متعددة (درايف + ميديا فاير)<br>
+⬆️ أضيف زر الرجوع للأعلى<br>
+🔧 أضيف قسم حل المشاكل الشائعة<br>
+🎨 تحسين وتحديث شكل القائمة الجانبية
 </p>
 
 </div>
@@ -996,11 +1392,17 @@ target="_blank">
 General Fix © 2026
 </footer>
 
+<!-- زر الرجوع للأعلى -->
+<div class="back-to-top" onclick="scrollToTop()">
+    ⬆
+</div>
+
 <script>
 
 const menuBtn = document.querySelector('.menu-btn');
 const sidebar = document.querySelector('.sidebar');
 const overlay = document.querySelector('.overlay');
+const backToTopBtn = document.querySelector('.back-to-top');
 
 function toggleSidebar(){
     menuBtn.classList.toggle('active');
@@ -1011,6 +1413,7 @@ function toggleSidebar(){
 function hideAll(){
     document.getElementById('home').classList.add('hidden');
     document.getElementById('services').classList.add('hidden');
+    document.getElementById('tutorials').classList.add('hidden');
     document.getElementById('problems').classList.add('hidden');
     document.getElementById('about').classList.add('hidden');
     document.getElementById('contact').classList.add('hidden');
@@ -1019,8 +1422,8 @@ function hideAll(){
 function navigateTo(sectionId){
     hideAll();
     document.getElementById(sectionId).classList.remove('hidden');
-    // إغلاق القائمة بعد الضغط
     toggleSidebar();
+    window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function showHome(){
@@ -1031,7 +1434,6 @@ function showHome(){
 // دالة نسخ المسار
 function copyPath(button, path){
     navigator.clipboard.writeText(path).then(function(){
-        // تغيير النص واللون مؤقتاً
         const originalText = button.innerHTML;
         button.innerHTML = '✅ تم النسخ';
         button.classList.add('copied');
@@ -1041,10 +1443,129 @@ function copyPath(button, path){
             button.classList.remove('copied');
         }, 2000);
     }).catch(function(err){
-        // في حال فشل النسخ
         alert('فشل نسخ المسار. الرجاء نسخه يدوياً.');
     });
 }
+
+// ========= شريط البحث =========
+function searchSite(){
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if(query === ''){
+            card.style.opacity = '1';
+            card.style.display = '';
+        } else if(text.includes(query)){
+            card.style.opacity = '1';
+            card.style.display = '';
+            card.scrollIntoView({behavior:'smooth', block:'center'});
+        } else {
+            card.style.opacity = '0.25';
+        }
+    });
+}
+
+// ========= زر الرجوع للأعلى =========
+window.addEventListener('scroll', function(){
+    if(window.scrollY > 400){
+        backToTopBtn.classList.add('visible');
+    } else {
+        backToTopBtn.classList.remove('visible');
+    }
+});
+
+function scrollToTop(){
+    window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ==========================================
+// ========= نظام العداد الحقيقي CountAPI =========
+// ==========================================
+
+const NAMESPACE_PREFIX = 'general-fix';
+
+// قائمة بجميع المفاتيح والعناصر المرتبطة بها
+const counterElements = {
+    'game-download': ['count-game-download', 'count-game-download2'],
+    'gen-online': ['count-gen-online'],
+    'radmin': ['count-radmin'],
+    'genpatcher': ['count-genpatcher'],
+    'genboss': ['count-genboss'],
+    'sahel': ['count-sahel'],
+    'naval': ['count-naval'],
+    'mapini': ['count-mapini'],
+    'gla-arabic': ['count-gla-arabic'],
+    'tutorial1': ['count-tutorial1'],
+    'tutorial2': ['count-tutorial2'],
+    'tutorial3': ['count-tutorial3'],
+    'tutorial4': ['count-tutorial4']
+};
+
+// دالة جلب العدد من CountAPI
+async function fetchCount(key){
+    try {
+        const response = await fetch(`https://api.countapi.xyz/get/${NAMESPACE_PREFIX}/${key}`);
+        const data = await response.json();
+        return data.value || 0;
+    } catch(error){
+        console.error('فشل جلب العداد:', error);
+        return null;
+    }
+}
+
+// دالة زيادة العداد عند الضغط
+async function incrementDownload(key){
+    try {
+        const response = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE_PREFIX}/${key}`);
+        const data = await response.json();
+        updateCountDisplay(key, data.value);
+    } catch(error){
+        console.error('فشل تحديث العداد:', error);
+    }
+}
+
+// دالة تحديث عرض العدد
+function updateCountDisplay(key, value){
+    const elementIds = counterElements[key];
+    if(!elementIds) return;
+    
+    elementIds.forEach(id => {
+        const el = document.getElementById(id);
+        if(el){
+            el.innerHTML = `📥 تم التحميل: <span>${value.toLocaleString()}</span> مرة`;
+        }
+    });
+}
+
+// دالة عرض خطأ في حال فشل التحميل
+function showCountError(key){
+    const elementIds = counterElements[key];
+    if(!elementIds) return;
+    
+    elementIds.forEach(id => {
+        const el = document.getElementById(id);
+        if(el){
+            el.innerHTML = `📥 تم التحميل: <span>---</span> مرة`;
+        }
+    });
+}
+
+// تحميل جميع العدادات عند فتح الصفحة
+async function loadAllCounts(){
+    for(const [key, elementIds] of Object.entries(counterElements)){
+        const count = await fetchCount(key);
+        if(count !== null){
+            updateCountDisplay(key, count);
+        } else {
+            showCountError(key);
+        }
+    }
+}
+
+// تشغيل تحميل العدادات
+loadAllCounts();
 
 showHome();
 
