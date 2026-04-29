@@ -72,7 +72,11 @@ header{
     backdrop-filter:blur(25px);
     background:rgba(10,12,22,0.75);
     border-bottom:1px solid rgba(255,255,255,0.08);
-    padding:22px 15px;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
 }
 
 header h1{
@@ -83,55 +87,188 @@ header h1{
     background:linear-gradient(135deg,#00ffc8,#00a6ff,#7b5cff);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    margin-bottom:18px;
     filter:drop-shadow(0 0 15px rgba(0,255,200,0.25));
+    margin:0 auto;
 }
 
-/* القائمة */
-nav{
+/* زر القائمة الجانبية */
+.menu-btn{
+    position:absolute;
+    top:50%;
+    right:22px;
+    transform:translateY(-50%);
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.12);
     display:flex;
+    flex-direction:column;
+    align-items:center;
     justify-content:center;
-    flex-wrap:wrap;
-    gap:12px;
+    gap:5px;
+    cursor:pointer;
+    z-index:200;
+    transition:0.3s;
+    backdrop-filter:blur(10px);
 }
 
-nav a{
-    padding:12px 24px;
-    border-radius:999px;
+.menu-btn:hover{
+    background:rgba(0,255,200,0.12);
+    border-color:rgba(0,255,200,0.4);
+    box-shadow:0 0 22px rgba(0,255,200,0.15);
+}
+
+.menu-btn span{
+    display:block;
+    width:22px;
+    height:2.5px;
+    border-radius:3px;
+    background:white;
+    transition:0.3s;
+}
+
+/* زر X عند الفتح */
+.menu-btn.active span:nth-child(1){
+    transform:rotate(45deg) translate(5px,5px);
+}
+.menu-btn.active span:nth-child(2){
+    opacity:0;
+}
+.menu-btn.active span:nth-child(3){
+    transform:rotate(-45deg) translate(6px,-6px);
+}
+
+/* القائمة الجانبية */
+.sidebar{
+    position:fixed;
+    top:0;
+    right:-340px;
+    width:310px;
+    height:100vh;
+    background:rgba(10,14,28,0.97);
+    backdrop-filter:blur(35px);
+    border-left:1px solid rgba(255,255,255,0.06);
+    z-index:150;
+    padding:85px 18px 30px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    transition:0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:-15px 0 60px rgba(0,0,0,0.55);
+    overflow-y:auto;
+}
+
+.sidebar.open{
+    right:0;
+}
+
+/* عنوان القائمة */
+.sidebar-title{
+    color:#8f96ad;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:4px;
+    padding-right:8px;
+}
+
+/* خلفية داكنة عند فتح القائمة */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    z-index:140;
+    opacity:0;
+    pointer-events:none;
+    transition:0.4s;
+}
+
+.overlay.active{
+    opacity:1;
+    pointer-events:auto;
+}
+
+/* أزرار القائمة بتصميم جديد */
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:15px 18px;
+    border-radius:16px;
     text-decoration:none;
-    color:#d4d7e7;
+    color:#cfd2e3;
     font-size:14px;
     font-weight:700;
     cursor:pointer;
+    border:1px solid rgba(255,255,255,0.05);
+    background:rgba(255,255,255,0.015);
+    transition:0.3s;
     position:relative;
     overflow:hidden;
-    border:1px solid rgba(255,255,255,0.08);
-    background:rgba(255,255,255,0.03);
-    transition:0.35s ease;
-    user-select:none;
 }
 
-nav a::before{
-    content:'';
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);
-    transition:0.5s;
+/* أيقونة داخل كل زر */
+.sidebar a .icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:rgba(255,255,255,0.04);
+    font-size:19px;
+    flex-shrink:0;
+    transition:0.3s;
 }
 
-nav a:hover::before{
-    left:100%;
-}
+/* لون مختلف لكل زر */
+.sidebar a:nth-child(2) .icon{ background:rgba(0,255,200,0.10); }
+.sidebar a:nth-child(3) .icon{ background:rgba(0,166,255,0.10); }
+.sidebar a:nth-child(4) .icon{ background:rgba(255,140,0,0.10); }
+.sidebar a:nth-child(5) .icon{ background:rgba(130,0,255,0.10); }
+.sidebar a:nth-child(6) .icon{ background:rgba(255,60,100,0.10); }
 
-nav a:hover{
-    transform:translateY(-3px);
-    background:rgba(0,255,200,0.10);
-    border-color:rgba(0,255,200,0.35);
-    box-shadow:0 0 25px rgba(0,255,200,0.18);
+.sidebar a:hover{
+    background:rgba(0,255,200,0.08);
+    border-color:rgba(0,255,200,0.25);
     color:white;
+    transform:translateX(-5px);
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+
+.sidebar a:hover .icon{
+    background:rgba(0,255,200,0.18);
+    box-shadow:0 0 18px rgba(0,255,200,0.12);
+}
+
+/* خط فاصل */
+.sidebar-divider{
+    height:1px;
+    background:rgba(255,255,255,0.05);
+    margin:6px 8px;
+}
+
+/* زر خاص للمشاكل */
+.sidebar a.problems-btn{
+    border:1px solid rgba(255,70,110,0.25);
+    background:rgba(255,70,110,0.04);
+}
+
+.sidebar a.problems-btn .icon{
+    background:rgba(255,70,110,0.12);
+}
+
+.sidebar a.problems-btn:hover{
+    border-color:rgba(255,70,110,0.5);
+    background:rgba(255,70,110,0.10);
+    box-shadow:0 8px 25px rgba(255,70,110,0.12);
+}
+
+.sidebar a.problems-btn:hover .icon{
+    background:rgba(255,70,110,0.22);
+    box-shadow:0 0 18px rgba(255,70,110,0.15);
 }
 
 /* الأقسام */
@@ -187,6 +324,83 @@ section h2{
 .card p{
     color:#d6d6de;
     line-height:2;
+}
+
+/* بطاقة المشاكل */
+.problem-card{
+    border:1px solid rgba(255,100,130,0.20);
+    background:rgba(25,20,30,0.65);
+}
+
+.problem-card h3{
+    color:#ff6b8a;
+}
+
+.problem-card .solution{
+    background:rgba(0,255,200,0.06);
+    border:1px solid rgba(0,255,200,0.15);
+    border-radius:16px;
+    padding:18px 20px;
+    margin-top:16px;
+}
+
+.problem-card .solution strong{
+    color:#00ffc8;
+    font-size:17px;
+}
+
+/* مسار قابل للنسخ */
+.path-container{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:12px;
+    background:rgba(0,0,0,0.35);
+    border:1px solid rgba(255,255,255,0.10);
+    border-radius:14px;
+    padding:6px 6px 6px 16px;
+    flex-wrap:wrap;
+}
+
+.path-container .path-text{
+    flex:1;
+    color:#b0b8cc;
+    font-size:13px;
+    direction:ltr;
+    text-align:left;
+    font-family:'Consolas','Courier New',monospace;
+    word-break:break-all;
+    min-width:180px;
+}
+
+.copy-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:10px 16px;
+    border-radius:10px;
+    background:rgba(0,255,200,0.10);
+    border:1px solid rgba(0,255,200,0.25);
+    color:#00ffc8;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+    white-space:nowrap;
+    font-family:'Cairo',sans-serif;
+    flex-shrink:0;
+}
+
+.copy-btn:hover{
+    background:rgba(0,255,200,0.18);
+    border-color:rgba(0,255,200,0.45);
+    box-shadow:0 0 18px rgba(0,255,200,0.15);
+}
+
+.copy-btn.copied{
+    background:rgba(0,255,150,0.22);
+    border-color:rgba(0,255,150,0.5);
+    color:#00ffaa;
 }
 
 /* الأزرار */
@@ -282,12 +496,30 @@ footer{
 @media(max-width:700px){
 
     header h1{
-        font-size:30px;
+        font-size:26px;
     }
 
-    nav a{
-        padding:10px 16px;
+    .menu-btn{
+        width:42px;
+        height:42px;
+        right:12px;
+    }
+
+    .sidebar{
+        width:280px;
+    }
+
+    .sidebar a{
+        padding:13px 15px;
         font-size:13px;
+        gap:10px;
+    }
+
+    .sidebar a .icon{
+        width:36px;
+        height:36px;
+        font-size:17px;
+        border-radius:10px;
     }
 
     section{
@@ -311,6 +543,15 @@ footer{
     .cbox-iframe{
         height:350px;
     }
+
+    .path-container .path-text{
+        font-size:11px;
+    }
+
+    .copy-btn{
+        font-size:11px;
+        padding:8px 12px;
+    }
 }
 
 </style>
@@ -322,17 +563,48 @@ footer{
 
 <h1>General Fix</h1>
 
-<nav>
-    <a onclick="showHome()">الرئيسية</a>
-    <a onclick="toggleServices()">ملفات مهمة للتحميل</a>
-    <a onclick="toggleAbout()">عن الموقع</a>
-    <a onclick="toggleContact()">تواصل معنا</a>
-</nav>
+<!-- زر القائمة الجانبية -->
+<div class="menu-btn" onclick="toggleSidebar()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 
 </header>
 
-<!-- الرئيسية -->
+<!-- خلفية داكنة -->
+<div class="overlay" onclick="toggleSidebar()"></div>
 
+<!-- القائمة الجانبية بتصميم جديد -->
+<div class="sidebar">
+    <div class="sidebar-title">• القائمة الرئيسية •</div>
+
+    <a onclick="navigateTo('home')">
+        <span class="icon">🏠</span>
+        الرئيسية
+    </a>
+    <a onclick="navigateTo('services')">
+        <span class="icon">📁</span>
+        ملفات مهمة للتحميل
+    </a>
+    <a onclick="navigateTo('problems')" class="problems-btn">
+        <span class="icon">🔧</span>
+        حل المشاكل الشائعة
+    </a>
+
+    <div class="sidebar-divider"></div>
+
+    <a onclick="navigateTo('about')">
+        <span class="icon">ℹ️</span>
+        عن الموقع
+    </a>
+    <a onclick="navigateTo('contact')">
+        <span class="icon">📞</span>
+        تواصل معنا
+    </a>
+</div>
+
+<!-- الرئيسية -->
 <section id="home">
 
 <h2>موقع جذاب وحديث للاعبي جنرال زيرو أور</h2>
@@ -371,7 +643,6 @@ class="cbox-iframe">
 </section>
 
 <!-- الملفات -->
-
 <section id="services" class="hidden">
 
 <h2>ملفات مهمة للتحميل</h2>
@@ -469,7 +740,15 @@ target="_blank">
 </p>
 
 <div class="note">
-Documents > Command and Conquer Generals Zero Hour > Maps
+⚠ المسار الصحيح لوضع الخرائط:
+</div>
+
+<!-- مسار قابل للنسخ -->
+<div class="path-container">
+    <span class="path-text">Documents\Command and Conquer Generals Zero Hour\Maps</span>
+    <button class="copy-btn" onclick="copyPath(this, 'Documents\\Command and Conquer Generals Zero Hour\\Maps')">
+        📋 نسخ المسار
+    </button>
 </div>
 
 <a class="btn"
@@ -479,16 +758,25 @@ target="_blank">
 </a>
 
 </div>
+
 <div class="card">
 
 <h3>🚢 Naval Maps</h3>
 
 <p>
-مجموعة خرائط فيها حرب السفن ووحدات بحرية ما عليك سوى تحميل الملف وفك ضغطه يظهر لك عدة ملفات ومجلد اسمه Maps افتح المجلد وانسخ المجلدات بداخله والصقها في المسار :
+مجموعة خرائط فيها حرب السفن ووحدات بحرية. ما عليك سوى تحميل الملف وفك ضغطه، يظهر لك عدة ملفات ومجلد اسمه Maps، افتح المجلد وانسخ المجلدات بداخله والصقها في المسار:
 </p>
 
 <div class="note">
-Documents > Command and Conquer Generals Zero Hour > Maps
+⚠ المسار الصحيح لوضع الخرائط البحرية:
+</div>
+
+<!-- مسار قابل للنسخ -->
+<div class="path-container">
+    <span class="path-text">Documents\Command and Conquer Generals Zero Hour\Maps</span>
+    <button class="copy-btn" onclick="copyPath(this, 'Documents\\Command and Conquer Generals Zero Hour\\Maps')">
+        📋 نسخ المسار
+    </button>
 </div>
 
 <a class="btn"
@@ -521,8 +809,69 @@ target="_blank">
 
 </section>
 
-<!-- عن الموقع -->
+<!-- حل المشاكل الشائعة -->
+<section id="problems" class="hidden">
 
+<h2>🔧 حل المشاكل الشائعة</h2>
+
+<!-- المشكلة الأولى -->
+<div class="card problem-card">
+
+<h3>⚠️ المشكلة الأولى: Mismatch</h3>
+
+<p>
+مشكلة شائعة يعاني منها جميع لاعبي جنرال بسبب كبر حجم اللعبة وعدد الوحدات المبالغ به، أو بسبب الضغط الشديد على محرك اللعبة.
+</p>
+
+<div class="solution">
+<p><strong>💡 الحل:</strong></p>
+<p>
+أفضل حل هو استبدال اللعبة العادية بـ <strong>Genarals Online</strong>، حيث تضمن عدم تحطم اللعبة واستقرارها في معظم الغيمات. كما يمكن تثبيت <strong>GenPatcher</strong> الذي يساعد جداً في استقرار اللعبة ويمنع تحطم معظم الغيمات.
+</p>
+</div>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+<a class="btn" href="https://www.playgenerals.online/#download" target="_blank">
+🌐 تحميل Genarals Online
+</a>
+<a class="btn" href="https://legi.cc/genpatcher/" target="_blank">
+🛠️ تحميل GenPatcher
+</a>
+</div>
+
+</div>
+
+<!-- المشكلة الثانية -->
+<div class="card problem-card">
+
+<h3>🛡️ المشكلة الثانية: فشل تثبيت GenPatcher</h3>
+
+<p>
+أحياناً يفشل تثبيت تطبيق <strong>GenPatcher</strong> بسبب معاملته من جدران الحماية (Firewall) وبرامج مكافحة الفيروسات كفيروس أو برنامج ضار، مما يمنع تشغيله أو إكمال التثبيت.
+</p>
+
+<div class="solution">
+<p><strong>💡 الحل:</strong></p>
+<p>
+لحل هذه المشكلة، اتبع الخطوات التالية:
+</p>
+<ul style="margin-top:10px; padding-right:20px; color:#d6d6de; line-height:2.2;">
+    <li>🚫 <strong>أوقف جميع جدران الحماية</strong> (Windows Defender Firewall) بشكل مؤقت.</li>
+    <li>🛡️ <strong>أوقف برنامج مكافحة الفيروسات</strong> (Antivirus) مؤقتاً.</li>
+    <li>⚙️ <strong>امنح التطبيق جميع الصلاحيات</strong> (Permissions) المطلوبة.</li>
+    <li>👑 <strong>شغّل التطبيق كمسؤول</strong> (Run as Administrator) من خلال الضغط بزر الفأرة الأيمن على ملف التثبيت واختيار "تشغيل كمسؤول".</li>
+</ul>
+</div>
+
+<a class="btn" href="https://legi.cc/genpatcher/" target="_blank" style="margin-top:18px;">
+🛠️ تحميل GenPatcher
+</a>
+
+</div>
+
+</section>
+
+<!-- عن الموقع -->
 <section id="about" class="hidden">
 
 <h2>عن الموقع</h2>
@@ -544,6 +893,8 @@ target="_blank">
 <p>
 آخر تحديث للموقع 29/4/2026<br>
 ✨ أضيفت مجموعة الخرائط البحرية Naval<br>
+🔧 أضيف قسم حل المشاكل الشائعة مع مشكلتين وحلولهم<br>
+📋 أضيفت أزرار نسخ المسارات في قسم الملفات<br>
 🎨 تحسين لمظهر الموقع
 </p>
 
@@ -552,7 +903,6 @@ target="_blank">
 </section>
 
 <!-- التواصل -->
-
 <section id="contact" class="hidden">
 
 <h2>تواصل معنا</h2>
@@ -597,11 +947,29 @@ General Fix © 2026
 
 <script>
 
+const menuBtn = document.querySelector('.menu-btn');
+const sidebar = document.querySelector('.sidebar');
+const overlay = document.querySelector('.overlay');
+
+function toggleSidebar(){
+    menuBtn.classList.toggle('active');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+}
+
 function hideAll(){
     document.getElementById('home').classList.add('hidden');
     document.getElementById('services').classList.add('hidden');
+    document.getElementById('problems').classList.add('hidden');
     document.getElementById('about').classList.add('hidden');
     document.getElementById('contact').classList.add('hidden');
+}
+
+function navigateTo(sectionId){
+    hideAll();
+    document.getElementById(sectionId).classList.remove('hidden');
+    // إغلاق القائمة بعد الضغط
+    toggleSidebar();
 }
 
 function showHome(){
@@ -609,19 +977,22 @@ function showHome(){
     document.getElementById('home').classList.remove('hidden');
 }
 
-function toggleServices(){
-    hideAll();
-    document.getElementById('services').classList.remove('hidden');
-}
+// دالة نسخ المسار
+function copyPath(button, path){
+    navigator.clipboard.writeText(path).then(function(){
+        // تغيير النص واللون مؤقتاً
+        const originalText = button.innerHTML;
+        button.innerHTML = '✅ تم النسخ';
+        button.classList.add('copied');
 
-function toggleAbout(){
-    hideAll();
-    document.getElementById('about').classList.remove('hidden');
-}
-
-function toggleContact(){
-    hideAll();
-    document.getElementById('contact').classList.remove('hidden');
+        setTimeout(function(){
+            button.innerHTML = originalText;
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(function(err){
+        // في حال فشل النسخ
+        alert('فشل نسخ المسار. الرجاء نسخه يدوياً.');
+    });
 }
 
 showHome();
