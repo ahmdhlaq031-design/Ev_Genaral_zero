@@ -349,6 +349,18 @@ section h2{
     font-size:17px;
 }
 
+/* قائمة الخطوات */
+.steps-list{
+    margin-top:10px;
+    padding-right:20px;
+    color:#d6d6de;
+    line-height:2.2;
+}
+
+.steps-list li{
+    margin-bottom:8px;
+}
+
 /* مسار قابل للنسخ */
 .path-container{
     display:flex;
@@ -446,6 +458,13 @@ section h2{
 
 .btn:active{
     transform:scale(0.96);
+}
+
+/* أزرار صغيرة */
+.btn-sm{
+    padding:10px 20px;
+    font-size:12px;
+    margin-top:0;
 }
 
 /* الملاحظات */
@@ -855,7 +874,7 @@ target="_blank">
 <p>
 لحل هذه المشكلة، اتبع الخطوات التالية:
 </p>
-<ul style="margin-top:10px; padding-right:20px; color:#d6d6de; line-height:2.2;">
+<ul class="steps-list">
     <li>🚫 <strong>أوقف جميع جدران الحماية</strong> (Windows Defender Firewall) بشكل مؤقت.</li>
     <li>🛡️ <strong>أوقف برنامج مكافحة الفيروسات</strong> (Antivirus) مؤقتاً.</li>
     <li>⚙️ <strong>امنح التطبيق جميع الصلاحيات</strong> (Permissions) المطلوبة.</li>
@@ -866,6 +885,37 @@ target="_blank">
 <a class="btn" href="https://legi.cc/genpatcher/" target="_blank" style="margin-top:18px;">
 🛠️ تحميل GenPatcher
 </a>
+
+</div>
+
+<!-- المشكلة الثالثة: Same Series -->
+<div class="card problem-card">
+
+<h3>🔄 المشكلة الثالثة: Same Series</h3>
+
+<p>
+ظهور رسالة <strong>"Same Series"</strong> عند محاولة الانضمام إلى غرفة أو بدء لعبة جماعية. تحدث هذه المشكلة بسبب اختلاف إصدارات اللعبة بين اللاعبين، أو استخدام مودات وملفات مختلفة مثل <strong>Map.ini</strong> أو <strong>General Boss</strong> غير متطابقة بين جميع اللاعبين.
+</p>
+
+<div class="solution">
+<p><strong>💡 الحل:</strong></p>
+<ul class="steps-list">
+    <li>✅ <strong>تأكد من تطابق إصدارات اللعبة</strong> بين جميع اللاعبين. يفضل استخدام <strong>Genarals Online</strong> لضمان توحيد الإصدار.</li>
+    <li>📁 <strong>تأكد من وجود نفس الملفات الإضافية</strong> عند جميع اللاعبين (مثل Map.ini أو General Boss). إذا كان أحد اللاعبين يملك ملفات إضافية والآخر لا يملكها، ستظهر رسالة Same Series.</li>
+    <li>🗑️ <strong>احذف ملف Map.ini</strong> من مجلد اللعبة إذا كنت لا تحتاجه، أو تأكد من أن جميع اللاعبين يملكون نفس النسخة منه.</li>
+    <li>🛠️ <strong>استخدم GenPatcher</strong> لإصلاح ملفات اللعبة وإعادتها إلى الوضع الافتراضي المتوافق.</li>
+    <li>🔄 <strong>أعد تشغيل اللعبة</strong> بعد إجراء أي تعديلات على الملفات.</li>
+</ul>
+</div>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+<a class="btn" href="https://www.playgenerals.online/#download" target="_blank">
+🌐 تحميل Genarals Online
+</a>
+<a class="btn" href="https://legi.cc/genpatcher/" target="_blank">
+🛠️ تحميل GenPatcher
+</a>
+</div>
 
 </div>
 
@@ -893,7 +943,8 @@ target="_blank">
 <p>
 آخر تحديث للموقع 29/4/2026<br>
 ✨ أضيفت مجموعة الخرائط البحرية Naval<br>
-🔧 أضيف قسم حل المشاكل الشائعة مع مشكلتين وحلولهم<br>
+🔧 أضيف قسم حل المشاكل الشائعة مع ثلاث مشكلات وحلولها<br>
+🔄 أضيفت مشكلة Same Series وطريقة حلها<br>
 📋 أضيفت أزرار نسخ المسارات في قسم الملفات<br>
 🎨 تحسين لمظهر الموقع
 </p>
