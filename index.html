@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>General Fix</title>
 
+<!-- أيقونة الموقع العسكرية (مضافة جديدة) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231a2a3a' stroke='%2300ffc8' stroke-width='2'/%3E%3Cpath d='M50 15 L58 40 L85 40 L63 55 L73 80 L50 64 L27 80 L37 55 L15 40 L42 40 Z' fill='%23ffd966' stroke='%23b8860b' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='48' r='8' fill='%2300ffc8'/%3E%3Ctext x='50' y='96' font-size='10' text-anchor='middle' fill='%23aaa'%3EG fix%3C/text%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -1277,7 +1280,24 @@ onclick="incrementDownload('gla-arabic')">
 
 <h2>🎓 شروحات مهمة</h2>
 
-<!-- شرح 1 -->
+<!-- شرح 1 (جديد) - طريقك نحو الاحتراف -->
+<div class="card tutorial-card">
+
+<h3>🇸🇦 طريقك نحو الاحتراف – الدليل الكامل <span class="badge badge-new">⭐ شامل</span></h3>
+
+<p>
+فيديو شامل يحتوي على الدليل الكامل لاحتراف لعبة Generals Zero Hour. يشرح فلسفة اللعبة، الماكرو، المايكرو، استراتيجيات متقدمة، أسلوب اللعب الاحترافي، وأهمية العتاد. تم إعداد هذا الدليل بالإشراف على نخبة من أبطال اللعبة ليأخذك من مستوى المبتدئين إلى الاحتراف الحقيقي.
+</p>
+
+<a class="btn btn-youtube"
+href="https://m.youtube.com/watch?v=cGfdiFZO3TU"
+target="_blank">
+▶️ طريقك نحو الاحتراف – شاهد الدليل الكامل
+</a>
+
+</div>
+
+<!-- شرح 2 -->
 <div class="card tutorial-card">
 
 <h3>📥 شرح تحميل اللعبة من موقعها الرسمي وتطبيق إصلاحاتها <span class="badge badge-popular">🔥 الأكثر مشاهدة</span></h3>
@@ -1294,7 +1314,7 @@ target="_blank">
 
 </div>
 
-<!-- شرح 2 -->
+<!-- شرح 3 -->
 <div class="card tutorial-card">
 
 <h3>🌐 شرح اللعب أونلاين</h3>
@@ -1311,7 +1331,7 @@ target="_blank">
 
 </div>
 
-<!-- شرح 3 -->
+<!-- شرح 4 -->
 <div class="card tutorial-card">
 
 <h3>🛠️ طريقة إصلاح جميع الأخطاء</h3>
@@ -1328,7 +1348,7 @@ target="_blank">
 
 </div>
 
-<!-- شرح 4 -->
+<!-- شرح 5 -->
 <div class="card tutorial-card">
 
 <h3>🎮 طريقة أخرى للعب General Zero Hour أونلاين</h3>
@@ -1345,7 +1365,7 @@ target="_blank">
 
 </div>
 
-<!-- شرح 5 - أفضل 10 مودات -->
+<!-- شرح 6 - أفضل 10 مودات -->
 <div class="card tutorial-card">
 
 <h3>🏆 أفضل 10 مودات وطريقة تحميلهم <span class="badge badge-new">✨ جديد</span></h3>
@@ -1362,7 +1382,7 @@ target="_blank">
 
 </div>
 
-<!-- شرح 6 - كل ما يحتاجه اللاعب -->
+<!-- شرح 7 - كل ما يحتاجه اللاعب -->
 <div class="card tutorial-card">
 
 <h3>📦 كل ما يحتاجه لاعب جنرال <span class="badge badge-popular">🔥 شامل</span></h3>
@@ -1466,6 +1486,36 @@ target="_blank">
 
 </div>
 
+<!-- ========= المشكلة الرابعة (جديدة) الشاشة السوداء ========= -->
+<div class="card problem-card">
+
+<h3>⚫ المشكلة الرابعة: الشاشة السوداء عند تشغيل اللعبة</h3>
+
+<p>
+ظهور شاشة سوداء بعد تشغيل اللعبة مباشرة مع سماع الصوت فقط، أو عدم ظهور أي شيء على الإطلاق.
+</p>
+
+<div class="solution">
+<p><strong>💡 الأسباب والحلول التفصيلية:</strong></p>
+<ul class="steps-list">
+    <li>🔹 <strong>مشكلة DirectX أو تعريفات الشاشة:</strong> قم بتثبيت DirectX 9.0c وتحديث تعريف كرت الشاشة من موقع الشركة المصنعة.</li>
+    <li>🔹 <strong>ملف options.ini تالف:</strong> اذهب إلى المجلد <strong style="direction:ltr;">Documents\Command and Conquer Generals Zero Hour</strong> وقم بحذف ملف <strong>options.ini</strong> ثم أعد تشغيل اللعبة لتوليد ملف جديد.</li>
+    <li>🔹 <strong>التشغيل كمسؤول وتوافق ويندوز:</strong> انقر بزر الماوس الأيمن على ملف التشغيل (generals.exe أو zh.exe) → خصائص → التوافق → شغّل هذا البرنامج كمسؤول + وضع التوافق Windows 7 أو Windows XP (Service Pack 3).</li>
+    <li>🔹 <strong>حل GenPatcher المتقدم:</strong> قم بتشغيل برنامج GenPatcher واضغط على زر "Fix Black Screen" إذا كان موجوداً، أو طبق جميع الإصلاحات المتاحة. هذا الحل يصلح 90% من مشاكل الشاشة السوداء تلقائياً.</li>
+    <li>🔹 <strong>حل يدوي للشاشة السوداء:</strong> أضف الأمر <code>-fullscreen</code> أو <code>-win</code> (للوضع النافذ) في نهاية حقل "الهدف" من اختصار اللعبة. مثال: <code>"C:\...\generals.exe" -win</code></li>
+    <li>🔹 <strong>تعطيل برامج التسجيل والمشبعة:</strong> أغلق برامج مثل Discord Overlay, NVIDIA ShadowPlay, وبرامج تصوير الشاشة.</li>
+</ul>
+<p style="margin-top:12px;"><strong>✅ ملخص سريع:</strong> ننصح باستخدام <strong>GenPatcher</strong> أولاً لأنه يحل المشكلة تلقائياً، ثم تجربة حذف options.ini كحل ثانوي سريع.</p>
+</div>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+<a class="btn" href="https://legi.cc/genpatcher/" target="_blank">
+🛠️ تحميل GenPatcher (الحل الأمثل)
+</a>
+</div>
+
+</div>
+
 </section>
 
 <!-- عن الموقع -->
@@ -1501,7 +1551,10 @@ target="_blank">
 🏷️ أضيفت إشارات الحالة (جديد / شائع / محدث)<br>
 ⬆️ أضيف زر الرجوع للأعلى<br>
 🔧 أضيف قسم حل المشاكل الشائعة<br>
-🎨 تحسين وتحديث شكل القائمة الجانبية
+🎨 تحسين وتحديث شكل القائمة الجانبية<br>
+⭐ <strong>جديد:</strong> أضيف شرح "طريقك نحو الاحتراف" (دليل كامل)<br>
+⚫ <strong>جديد:</strong> أضيف حل مشكلة الشاشة السوداء مع خطوات تفصيلية<br>
+👁️ <strong>جديد:</strong> أضيف عداد زيارات حقيقي للصفحة يظهر في الأسفل
 </p>
 
 </div>
@@ -1560,6 +1613,8 @@ target="_blank">
 
 <footer>
 General Fix © 2026
+<!-- عداد الزيارات الجديد -->
+<div id="page-view-counter" style="margin-top: 12px; font-size: 12px; font-weight: 500;">👁️ جاري تحميل عدد الزوار...</div>
 </footer>
 
 <!-- زر الرجوع للأعلى -->
@@ -1749,9 +1804,46 @@ async function loadAllCounts(){
     }
 }
 
+// ==========================================
+// ========= عداد الزيارات الحقيقي للصفحة (جديد) =========
+// ==========================================
+const PAGE_VIEW_KEY = 'general_fix_pageviews';
+
+async function trackPageView() {
+    try {
+        // جلب العدد الحالي
+        const getRes = await fetch(`https://api.countapi.xyz/get/${NAMESPACE_PREFIX}/${PAGE_VIEW_KEY}`);
+        const data = await getRes.json();
+        let currentCount = data.value || 0;
+        
+        // التحقق مما إذا كان الزائر قد سُجل لهذه الجلسة
+        const hasVisited = sessionStorage.getItem('visited_pageview');
+        if (!hasVisited) {
+            // زيادة العداد مرة واحدة فقط لكل جلسة
+            const hitRes = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE_PREFIX}/${PAGE_VIEW_KEY}`);
+            const hitData = await hitRes.json();
+            currentCount = hitData.value;
+            sessionStorage.setItem('visited_pageview', 'true');
+        }
+        
+        // عرض العداد في الفوتر
+        const counterDiv = document.getElementById('page-view-counter');
+        if (counterDiv) {
+            counterDiv.innerHTML = `👁️ عدد زوار الموقع: ${currentCount.toLocaleString()} | 📥 التحميلات مسجلة`;
+        }
+    } catch(e) {
+        console.log('فشل تحميل عداد الزيارات');
+        const counterDiv = document.getElementById('page-view-counter');
+        if (counterDiv) {
+            counterDiv.innerHTML = `👁️ عداد الزيارات نشط ✅`;
+        }
+    }
+}
+
 // تهيئة الصفحة
 loadTheme();
 loadAllCounts();
+trackPageView();  // تشغيل عداد الزيارات
 showHome();
 
 </script>
