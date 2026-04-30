@@ -1613,8 +1613,18 @@ target="_blank">
 
 <footer>
 General Fix © 2026
-<!-- عداد الزيارات - الحل النهائي -->
-<div id="page-view-counter" style="margin-top: 12px; font-size: 12px; font-weight: 500;">👁️ جاري تحميل عدد الزوار...</div>
+
+<!-- ===== عداد الزيارات الجديد من Smart-IP.net (يعمل فوراً) ===== -->
+<div style="margin-top:12px;">
+    <script type="text/javascript" src="https://www.smart-ip.net/counter?callback=smart_count"></script>
+    <script type="text/javascript">
+        function smart_count(data) {
+            document.getElementById('smartcounter').innerHTML = '👁️ عدد زوار الموقع: ' + data.count + ' | 📥 التحميلات مسجلة';
+        }
+    </script>
+    <div id="smartcounter">👁️ جاري تحميل عدد الزوار...</div>
+</div>
+
 </footer>
 
 <!-- زر الرجوع للأعلى -->
@@ -1657,23 +1667,27 @@ function showHome(){
     document.getElementById('home').classList.remove('hidden');
 }
 
+// دالة نسخ المسار
 function copyPath(button, path){
     navigator.clipboard.writeText(path).then(function(){
         const originalText = button.innerHTML;
         button.innerHTML = '✅ تم النسخ';
         button.classList.add('copied');
+
         setTimeout(function(){
             button.innerHTML = originalText;
             button.classList.remove('copied');
         }, 2000);
     }).catch(function(err){
-        alert('فشل نسخ المسار');
+        alert('فشل نسخ المسار. الرجاء نسخه يدوياً.');
     });
 }
 
+// ========= شريط البحث =========
 function searchSite(){
     const query = document.getElementById('searchInput').value.toLowerCase().trim();
     const cards = document.querySelectorAll('.card');
+    
     cards.forEach(card => {
         const text = card.innerText.toLowerCase();
         if(query === ''){
@@ -1689,6 +1703,7 @@ function searchSite(){
     });
 }
 
+// ========= زر الرجوع للأعلى =========
 window.addEventListener('scroll', function(){
     if(window.scrollY > 400){
         backToTopBtn.classList.add('visible');
@@ -1701,8 +1716,10 @@ function scrollToTop(){
     window.scrollTo({top:0, behavior:'smooth'});
 }
 
+// ========= نظام تبديل الوضع النهاري / الليلي =========
 function toggleTheme(){
     document.body.classList.toggle('light-mode');
+    
     if(document.body.classList.contains('light-mode')){
         themeToggle.innerHTML = '☀️';
         localStorage.setItem('theme', 'light');
@@ -1712,6 +1729,7 @@ function toggleTheme(){
     }
 }
 
+// تحميل الوضع المحفوظ
 function loadTheme(){
     const savedTheme = localStorage.getItem('theme');
     if(savedTheme === 'light'){
@@ -1723,7 +1741,7 @@ function loadTheme(){
 }
 
 // ==========================================
-// ========= عداد التحميلات =========
+// ========= نظام عداد التحميلات الحقيقي CountAPI =========
 // ==========================================
 
 const NAMESPACE_PREFIX = 'general-fix';
@@ -1746,6 +1764,7 @@ async function fetchCount(key){
         const data = await response.json();
         return data.value || 0;
     } catch(error){
+        console.error('فشل جلب العداد:', error);
         return null;
     }
 }
@@ -1763,10 +1782,23 @@ async function incrementDownload(key){
 function updateCountDisplay(key, value){
     const elementIds = counterElements[key];
     if(!elementIds) return;
+    
     elementIds.forEach(id => {
         const el = document.getElementById(id);
         if(el){
             el.innerHTML = `📥 تم التحميل: <span>${value.toLocaleString()}</span> مرة`;
+        }
+    });
+}
+
+function showCountError(key){
+    const elementIds = counterElements[key];
+    if(!elementIds) return;
+    
+    elementIds.forEach(id => {
+        const el = document.getElementById(id);
+        if(el){
+            el.innerHTML = `📥 تم التحميل: <span>---</span> مرة`;
         }
     });
 }
@@ -1776,53 +1808,18 @@ async function loadAllCounts(){
         const count = await fetchCount(key);
         if(count !== null){
             updateCountDisplay(key, count);
-        }
-    }
-}
-
-// ==========================================
-// ========= عداد الزيارات - حل نهائي يعمل فوراً =========
-// ==========================================
-
-async function initPageCounter() {
-    const counterDiv = document.getElementById('page-view-counter');
-    if (!counterDiv) return;
-    
-    // مفتاح خاص لعداد الزيارات
-    const visitorKey = 'general_fix_visitors_final';
-    
-    try {
-        // التحقق إذا كان الزائر قد سجل في هذه الجلسة
-        const hasVisited = sessionStorage.getItem('visitor_counted_final');
-        
-        if (!hasVisited) {
-            // أول زيارة في هذه الجلسة: نسجلها ونجلب العدد الجديد
-            const hitResponse = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE_PREFIX}/${visitorKey}`);
-            const hitData = await hitResponse.json();
-            const newCount = hitData.value;
-            counterDiv.innerHTML = `👁️ عدد زوار الموقع: ${newCount.toLocaleString()} | 📥 التحميلات مسجلة`;
-            sessionStorage.setItem('visitor_counted_final', 'true');
         } else {
-            // زائر عائد في نفس الجلسة: نعرض العدد الحالي دون زيادة
-            const getResponse = await fetch(`https://api.countapi.xyz/get/${NAMESPACE_PREFIX}/${visitorKey}`);
-            const getData = await getResponse.json();
-            const currentCount = getData.value || 1;
-            counterDiv.innerHTML = `👁️ عدد زوار الموقع: ${currentCount.toLocaleString()} | 📥 التحميلات مسجلة`;
+            showCountError(key);
         }
-    } catch (error) {
-        console.error('خطأ في عداد الزوار:', error);
-        // عرض رسالة بديلة في حالة وجود مشكلة
-        counterDiv.innerHTML = `👁️ عداد الزوار: 1+ (جاري التحديث التلقائي)`;
     }
 }
 
 // ==========================================
-// ========= تشغيل الكود =========
+// ========= تهيئة الصفحة =========
 // ==========================================
 
 loadTheme();
 loadAllCounts();
-initPageCounter();
 showHome();
 
 </script>
