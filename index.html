@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="ppck-ver" content="7a568acc1f9849f68581eeffa4ce9258" />
 <title>General Fix</title>
 
 <!-- أيقونة الموقع العسكرية -->
@@ -79,6 +78,15 @@ html{
     --chat-input-bg: rgba(20,24,40,0.90);
     --chat-header-bg: rgba(10,14,28,0.95);
     --chat-hover: rgba(0,255,200,0.04);
+    --save-btn-bg: rgba(130,0,255,0.10);
+    --save-btn-border: rgba(130,0,255,0.22);
+    --save-btn-color: #b890ff;
+    --faq-answer-bg: rgba(0,200,255,0.04);
+    --faq-answer-border: rgba(0,200,255,0.10);
+    --faq-question-bg: rgba(255,255,255,0.02);
+    --faq-question-border: rgba(255,255,255,0.05);
+    --saved-card-bg: rgba(30,25,40,0.65);
+    --saved-card-border: rgba(130,0,255,0.20);
 }
 
 /* ========================================== */
@@ -135,6 +143,15 @@ body.light-mode{
     --chat-input-bg: rgba(255,255,255,0.90);
     --chat-header-bg: rgba(255,255,255,0.95);
     --chat-hover: rgba(0,200,170,0.03);
+    --save-btn-bg: rgba(130,0,255,0.08);
+    --save-btn-border: rgba(130,0,255,0.18);
+    --save-btn-color: #7b40d8;
+    --faq-answer-bg: rgba(0,150,220,0.04);
+    --faq-answer-border: rgba(0,150,220,0.08);
+    --faq-question-bg: rgba(0,0,0,0.02);
+    --faq-question-border: rgba(0,0,0,0.05);
+    --saved-card-bg: rgba(245,240,255,0.75);
+    --saved-card-border: rgba(130,0,255,0.18);
 }
 
 body{
@@ -427,6 +444,7 @@ header h1{
 .sidebar a:nth-child(5) .icon{ background:rgba(255,140,0,0.10); border-color:rgba(255,140,0,0.18); }
 .sidebar a:nth-child(6) .icon{ background:rgba(130,0,255,0.10); border-color:rgba(130,0,255,0.18); }
 .sidebar a:nth-child(7) .icon{ background:rgba(255,60,100,0.10); border-color:rgba(255,60,100,0.18); }
+.sidebar a:nth-child(8) .icon{ background:rgba(0,255,150,0.10); border-color:rgba(0,255,150,0.18); }
 
 .sidebar a:hover{
     color:var(--text-primary);
@@ -546,6 +564,40 @@ section h2{
 .card p{
     color:var(--text-secondary);
     line-height:2;
+}
+
+/* ========= زر الحفظ ========= */
+.save-btn{
+    position:absolute;
+    top:16px;
+    left:16px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--save-btn-bg);
+    border:1.5px solid var(--save-btn-border);
+    color:var(--save-btn-color);
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:10;
+    transition:0.3s;
+    backdrop-filter:blur(5px);
+}
+
+.save-btn:hover{
+    background:rgba(130,0,255,0.20);
+    border-color:rgba(130,0,255,0.45);
+    box-shadow:0 0 20px rgba(130,0,255,0.20);
+    transform:scale(1.1);
+}
+
+.save-btn.saved{
+    background:rgba(0,255,150,0.18);
+    border-color:rgba(0,255,150,0.40);
+    color:#00ffaa;
 }
 
 /* ========= عداد التحميلات ========= */
@@ -872,6 +924,141 @@ section h2{
     background:var(--iframe-bg);
 }
 
+/* ========= الأسئلة المتكررة ========= */
+.faq-item{
+    background:var(--faq-question-bg);
+    border:1px solid var(--faq-question-border);
+    border-radius:18px;
+    margin-bottom:12px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.faq-question-wrapper{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 20px;
+    cursor:pointer;
+    user-select:none;
+    transition:0.3s;
+}
+
+.faq-question-wrapper:hover{
+    background:var(--chat-hover);
+}
+
+.faq-question-text{
+    font-weight:700;
+    font-size:15px;
+    color:var(--text-primary);
+    flex:1;
+    padding-left:12px;
+}
+
+.faq-toggle-btn{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:var(--icon-bg);
+    border:1.5px solid var(--icon-border);
+    color:var(--text-muted);
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:0.3s;
+    flex-shrink:0;
+}
+
+.faq-toggle-btn:hover{
+    background:rgba(0,255,200,0.12);
+    border-color:rgba(0,255,200,0.4);
+    color:#00c8a0;
+}
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
+    background:var(--faq-answer-bg);
+    border-top:1px solid var(--faq-answer-border);
+}
+
+.faq-answer.open{
+    max-height:800px;
+}
+
+.faq-answer-content{
+    padding:20px;
+    color:var(--text-secondary);
+    line-height:2;
+    font-size:14px;
+}
+
+/* ========= بطاقات المحفوظات ========= */
+.saved-card{
+    border:1px solid var(--saved-card-border);
+    background:var(--saved-card-bg);
+}
+
+.saved-card h3{
+    color:#9b6dff;
+}
+
+.saved-empty{
+    text-align:center;
+    color:var(--text-muted);
+    padding:40px;
+    font-size:16px;
+}
+
+.saved-list-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 18px;
+    border-radius:14px;
+    background:var(--bg-path);
+    border:1px solid var(--border-color);
+    margin-bottom:10px;
+    transition:0.3s;
+}
+
+.saved-list-item:hover{
+    border-color:rgba(130,0,255,0.25);
+}
+
+.saved-list-item-text{
+    font-weight:600;
+    font-size:14px;
+    color:var(--text-primary);
+    flex:1;
+}
+
+.saved-list-item .delete-saved-btn{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:rgba(255,70,110,0.10);
+    border:1px solid rgba(255,70,110,0.20);
+    color:#ff6b8a;
+    font-size:16px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:0.3s;
+    flex-shrink:0;
+    margin-right:10px;
+}
+
+.saved-list-item .delete-saved-btn:hover{
+    background:rgba(255,70,110,0.22);
+    border-color:rgba(255,70,110,0.45);
+}
+
 /* الروابط */
 .contact-link{
     color:#00a8e0;
@@ -1012,6 +1199,18 @@ footer{
         padding-left:48px;
         font-size:14px;
     }
+
+    .save-btn{
+        width:34px;
+        height:34px;
+        top:12px;
+        left:12px;
+        font-size:16px;
+    }
+
+    .faq-question-text{
+        font-size:13px;
+    }
 }
 
 </style>
@@ -1061,6 +1260,14 @@ footer{
         <span class="icon">🔧</span>
         حل المشاكل الشائعة
     </a>
+    <a onclick="navigateTo('faq')">
+        <span class="icon">❓</span>
+        الأسئلة المتكررة
+    </a>
+    <a onclick="navigateTo('saved')">
+        <span class="icon">💾</span>
+        المحفوظات
+    </a>
 
     <div class="sidebar-divider"></div>
 
@@ -1087,6 +1294,8 @@ footer{
 
 <div class="card">
 
+<button class="save-btn" onclick="saveItem(this, 'تحميل اللعبة', 'رابط تحميل لعبة جنرال زيرو أور')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🎮 تحميل اللعبة <span class="badge badge-popular">🔥 شائع</span></h3>
 
 <p>
@@ -1107,6 +1316,8 @@ onclick="incrementDownload('game-download')">
 </div>
 
 <div class="card">
+
+<button class="save-btn" onclick="saveItem(this, 'دردشة اللاعبين', 'محادثة اللاعبين المباشرة')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>💬 دردشة اللاعبين</h3>
 
@@ -1138,6 +1349,8 @@ onclick="incrementDownload('game-download')">
 
 <div class="card">
 
+<button class="save-btn" onclick="saveItem(this, 'تحميل اللعبة', 'رابط تحميل لعبة جنرال زيرو أور')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🎮 تحميل اللعبة <span class="badge badge-popular">🔥 شائع</span></h3>
 
 <p>
@@ -1158,6 +1371,8 @@ onclick="incrementDownload('game-download')">
 </div>
 
 <div class="card">
+
+<button class="save-btn" onclick="saveItem(this, 'Genarals Online', 'النسخة الحديثة من اللعبة')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>🌐 Genarals Online <span class="badge badge-new">✨ جديد</span></h3>
 
@@ -1180,6 +1395,8 @@ onclick="incrementDownload('gen-online')">
 
 <div class="card">
 
+<button class="save-btn" onclick="saveItem(this, 'Radmin VPN', 'تطبيق للعب اونلاين')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🖥️ Radmin VPN</h3>
 
 <p>
@@ -1201,6 +1418,8 @@ onclick="incrementDownload('radmin')">
 
 <div class="card">
 
+<button class="save-btn" onclick="saveItem(this, 'GenPatcher', 'تطبيق إصلاحات اللعبة')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🛠️ GenPatcher <span class="badge badge-updated">🔄 محدث</span></h3>
 
 <p>
@@ -1221,6 +1440,8 @@ onclick="incrementDownload('genpatcher')">
 </div>
 
 <div class="card">
+
+<button class="save-btn" onclick="saveItem(this, 'General Boss', 'مود General Boss')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>⚔️ General Boss</h3>
 
@@ -1246,6 +1467,8 @@ onclick="incrementDownload('genboss')">
 </div>
 
 <div class="card">
+
+<button class="save-btn" onclick="saveItem(this, 'Sahel Maps', '800 خريطة إضافية')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>🗺️ Sahel Maps <span class="badge badge-popular">🔥 شائع</span></h3>
 
@@ -1279,6 +1502,8 @@ onclick="incrementDownload('sahel')">
 
 <div class="card">
 
+<button class="save-btn" onclick="saveItem(this, 'Naval Maps', 'خرائط بحرية')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🚢 Naval Maps <span class="badge badge-new">✨ جديد</span></h3>
 
 <p>
@@ -1311,6 +1536,8 @@ onclick="incrementDownload('naval')">
 
 <div class="card">
 
+<button class="save-btn" onclick="saveItem(this, 'Map.ini', 'ملف تسريع البناء')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>⚡ Map.ini</h3>
 
 <p>
@@ -1335,6 +1562,8 @@ onclick="incrementDownload('mapini')">
 </div>
 
 <div class="card">
+
+<button class="save-btn" onclick="saveItem(this, 'تعريب أصوات GLA', 'ملف تعريب وحدات GLA')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>🗣️ تعريب أصوات وحدات GLA <span class="badge badge-new">✨ جديد</span></h3>
 
@@ -1390,6 +1619,8 @@ onclick="incrementDownload('gla-arabic')">
 
 <div class="card">
 
+<button class="save-btn" onclick="saveItem(this, 'تعريب واجهة اللعبة', 'ملف تعريب القوائم')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🖥️ تعريب واجهة اللعبة <span class="badge badge-new">✨ جديد</span></h3>
 
 <p>
@@ -1409,6 +1640,29 @@ onclick="incrementDownload('arabic-ui')">
 
 </div>
 
+<div class="card">
+
+<button class="save-btn" onclick="saveItem(this, 'DirectX 9.0c', 'مكتبات DirectX لتشغيل اللعبة')" title="حفظ للرجوع لاحقاً">💾</button>
+
+<h3>📦 DirectX 9.0c <span class="badge badge-new">✨ مهم</span></h3>
+
+<p>
+مكتبات DirectX 9.0c الضرورية لتشغيل لعبة جنرال زيرو أور على الأجهزة الحديثة. تحل مشاكل الشاشة السوداء والتوافق. ثبتها قبل تشغيل اللعبة.
+</p>
+
+<div class="download-count" id="count-directx">
+    📥 جاري تحميل العدد... <span class="loading-dot"></span>
+</div>
+
+<a class="btn"
+href="https://www.microsoft.com/en-us/download/details.aspx?id=8109"
+target="_blank"
+onclick="incrementDownload('directx')">
+📦 تحميل DirectX 9.0c
+</a>
+
+</div>
+
 </section>
 
 <!-- ========= قسم الشروحات ========= -->
@@ -1418,6 +1672,8 @@ onclick="incrementDownload('arabic-ui')">
 
 <!-- شرح 1 - طريقك نحو الاحتراف -->
 <div class="card tutorial-card">
+
+<button class="save-btn" onclick="saveItem(this, 'طريقك نحو الاحتراف', 'الدليل الكامل للاحتراف')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>🇸🇦 طريقك نحو الاحتراف – الدليل الكامل <span class="badge badge-new">⭐ شامل</span></h3>
 
@@ -1436,6 +1692,8 @@ target="_blank">
 <!-- شرح 2 -->
 <div class="card tutorial-card">
 
+<button class="save-btn" onclick="saveItem(this, 'شرح تحميل اللعبة', 'شرح تحميل وتثبيت اللعبة')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>📥 شرح تحميل اللعبة من موقعها الرسمي وتطبيق إصلاحاتها <span class="badge badge-popular">🔥 الأكثر مشاهدة</span></h3>
 
 <p>
@@ -1452,6 +1710,8 @@ target="_blank">
 
 <!-- شرح 3 -->
 <div class="card tutorial-card">
+
+<button class="save-btn" onclick="saveItem(this, 'شرح اللعب أونلاين', 'طريقة اللعب الجماعي')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>🌐 شرح اللعب أونلاين</h3>
 
@@ -1470,6 +1730,8 @@ target="_blank">
 <!-- شرح 4 -->
 <div class="card tutorial-card">
 
+<button class="save-btn" onclick="saveItem(this, 'إصلاح جميع الأخطاء', 'شرح إصلاح الأخطاء الشائعة')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🛠️ طريقة إصلاح جميع الأخطاء</h3>
 
 <p>
@@ -1486,6 +1748,8 @@ target="_blank">
 
 <!-- شرح 5 -->
 <div class="card tutorial-card">
+
+<button class="save-btn" onclick="saveItem(this, 'طريقة أخرى للعب أونلاين', 'شرح بديل للعب الجماعي')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>🎮 طريقة أخرى للعب General Zero Hour أونلاين</h3>
 
@@ -1504,6 +1768,8 @@ target="_blank">
 <!-- شرح 6 - أفضل 10 مودات -->
 <div class="card tutorial-card">
 
+<button class="save-btn" onclick="saveItem(this, 'أفضل 10 مودات', 'استعراض أفضل المودات')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🏆 أفضل 10 مودات وطريقة تحميلهم <span class="badge badge-new">✨ جديد</span></h3>
 
 <p>
@@ -1521,6 +1787,8 @@ target="_blank">
 <!-- شرح 7 - كل ما يحتاجه اللاعب -->
 <div class="card tutorial-card">
 
+<button class="save-btn" onclick="saveItem(this, 'كل ما يحتاجه اللاعب', 'فيديو شامل لكل احتياجات اللاعب')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>📦 كل ما يحتاجه لاعب جنرال <span class="badge badge-popular">🔥 شامل</span></h3>
 
 <p>
@@ -1535,8 +1803,29 @@ target="_blank">
 
 </div>
 
+<!-- فيديو تعليمي جديد - شرح الماكرو والمايكرو -->
+<div class="card tutorial-card">
+
+<button class="save-btn" onclick="saveItem(this, 'شرح الماكرو والمايكرو', 'فيديو تعليمي للماكرو والمايكرو')" title="حفظ للرجوع لاحقاً">💾</button>
+
+<h3>🧠 شرح الماكرو والمايكرو – دورة تدريبية كاملة <span class="badge badge-new">⭐ مهم</span></h3>
+
+<p>
+فيديو تعليمي شامل يشرح مفهوم <strong>الماكرو والمايكرو</strong> في لعبة جنرال زيرو أور. تعلم كيفية إدارة الموارد، بناء القواعد بسرعة، التحكم بالوحدات بدقة، واتخاذ القرارات الصحيحة في الوقت المناسب. هذا الفيديو هو مفتاحك للعب بشكل أذكى وأسرع.
+</p>
+
+<a class="btn btn-youtube"
+href="https://www.youtube.com/watch?v=6XhVpFzKQME"
+target="_blank">
+▶️ مشاهدة شرح الماكرو والمايكرو
+</a>
+
+</div>
+
 <!-- ========= سلسلة أشياء لا يفعلها إلا المحترفون ========= -->
 <div class="card tutorial-card">
+
+<button class="save-btn" onclick="saveItem(this, 'المحترفون - الجزء 1', 'أشياء لا يفعلها إلا المحترفون ج1')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>🎯 أشياء لا يفعلها إلا المحترفون – الجزء الأول <span class="badge badge-new">⭐ من قناة Sahel General</span></h3>
 
@@ -1554,6 +1843,8 @@ target="_blank">
 
 <div class="card tutorial-card">
 
+<button class="save-btn" onclick="saveItem(this, 'المحترفون - الجزء 2', 'أشياء لا يفعلها إلا المحترفون ج2')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🎯 أشياء لا يفعلها إلا المحترفون – الجزء الثاني <span class="badge badge-popular">🔥 شائع</span></h3>
 
 <p>
@@ -1570,6 +1861,8 @@ target="_blank">
 
 <div class="card tutorial-card">
 
+<button class="save-btn" onclick="saveItem(this, 'المحترفون - الجزء 3', 'أشياء لا يفعلها إلا المحترفون ج3')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🎯 أشياء لا يفعلها إلا المحترفون – الجزء الثالث</h3>
 
 <p>
@@ -1585,6 +1878,8 @@ target="_blank">
 </div>
 
 <div class="card tutorial-card">
+
+<button class="save-btn" onclick="saveItem(this, 'المحترفون - الجزء 4', 'أشياء لا يفعلها إلا المحترفون ج4')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>🎯 أشياء لا يفعلها إلا المحترفون – الجزء الرابع <span class="badge badge-updated">🔄 جديد</span></h3>
 
@@ -1603,6 +1898,8 @@ target="_blank">
 <!-- ========= بطاقة قناة Sahel General TV ========= -->
 <div class="card tutorial-card" style="border-color: rgba(0,200,100,0.30);">
 
+<button class="save-btn" onclick="saveItem(this, 'قناة Sahel TV', 'أفضل قناة تعليمية')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>📺 قناة General Sahel TV <span class="badge badge-popular">🏆 الأفضل</span></h3>
 
 <p>
@@ -1619,6 +1916,8 @@ target="_blank">
 
 <!-- ========= بطاقة قناة Hsn leb ========= -->
 <div class="card tutorial-card" style="border-color: rgba(255,80,180,0.30);">
+
+<button class="save-btn" onclick="saveItem(this, 'قناة Hsn leb', 'أفضل قناة محتوى احترافي')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>📺 قناة Hsn leb <span class="badge badge-popular">🏆 الأفضل</span></h3>
 
@@ -1642,6 +1941,8 @@ target="_blank">
 <h2>🔧 حل المشاكل الشائعة</h2>
 
 <div class="card problem-card">
+
+<button class="save-btn" onclick="saveItem(this, 'مشكلة Mismatch', 'حل مشكلة Mismatch')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>⚠️ المشكلة الأولى: Mismatch</h3>
 
@@ -1669,6 +1970,8 @@ target="_blank">
 
 <div class="card problem-card">
 
+<button class="save-btn" onclick="saveItem(this, 'فشل تثبيت GenPatcher', 'حل مشكلة فشل تثبيت GenPatcher')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🛡️ المشكلة الثانية: فشل تثبيت GenPatcher</h3>
 
 <p>
@@ -1692,6 +1995,8 @@ target="_blank">
 </div>
 
 <div class="card problem-card">
+
+<button class="save-btn" onclick="saveItem(this, 'مشكلة Same Series', 'حل مشكلة Same Series')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>🔄 المشكلة الثالثة: Same Series</h3>
 
@@ -1724,6 +2029,8 @@ target="_blank">
 <!-- المشكلة الرابعة الشاشة السوداء -->
 <div class="card problem-card">
 
+<button class="save-btn" onclick="saveItem(this, 'الشاشة السوداء', 'حل مشكلة الشاشة السوداء')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>⚫ المشكلة الرابعة: الشاشة السوداء عند تشغيل اللعبة</h3>
 
 <p>
@@ -1751,6 +2058,337 @@ target="_blank">
 
 </div>
 
+<!-- المشكلة الخامسة - تحطم اللعبة -->
+<div class="card problem-card">
+
+<button class="save-btn" onclick="saveItem(this, 'تحطم اللعبة', 'حل مشكلة تحطم اللعبة المفاجئ')" title="حفظ للرجوع لاحقاً">💾</button>
+
+<h3>💥 المشكلة الخامسة: تحطم اللعبة المفاجئ أثناء اللعب</h3>
+
+<p>
+تحطم اللعبة فجأة والعودة إلى سطح المكتب أثناء اللعب، خصوصاً في المباريات الطويلة أو عند وجود عدد كبير من الوحدات.
+</p>
+
+<div class="solution">
+<p><strong>💡 الحل:</strong></p>
+<ul class="steps-list">
+    <li>🔹 <strong>تقليل إعدادات الرسوميات:</strong> اخفض جودة الظلال، المؤثرات، والدقة قليلاً من داخل إعدادات اللعبة.</li>
+    <li>🔹 <strong>تفعيل وضع التوافق:</strong> شغّل اللعبة بوضع التوافق Windows XP Service Pack 3 وكمسؤول.</li>
+    <li>🔹 <strong>زيادة الذاكرة الافتراضية:</strong> اذهب إلى خصائص النظام → إعدادات النظام المتقدمة → الأداء → إعدادات → متقدم → الذاكرة الافتراضية → تغيير. اجعلها 4096 ميجابايت كحد أدنى و 8192 كحد أقصى.</li>
+    <li>🔹 <strong>استخدام GenPatcher:</strong> طبق جميع إصلاحات GenPatcher خاصة إصلاح الذاكرة (4GB Patch).</li>
+    <li>🔹 <strong>إغلاق البرامج الخلفية:</strong> أغلق المتصفح والبرامج الثقيلة قبل تشغيل اللعبة.</li>
+</ul>
+</div>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+<a class="btn" href="https://legi.cc/genpatcher/" target="_blank">
+🛠️ تحميل GenPatcher
+</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- الأسئلة المتكررة -->
+<section id="faq" class="hidden">
+
+<h2>❓ الأسئلة المتكررة</h2>
+
+<div class="card">
+
+<h3>📋 الأسئلة الشائعة في مجتمع اللعبة</h3>
+<p style="margin-bottom:20px;">اضغط على السؤال لرؤية الجواب، واضغط مرة أخرى لإغلاقه.</p>
+
+<!-- سؤال 1 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">1. كيف أحمل لعبة جنرال زيرو أور مجاناً؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+يمكنك تحميل اللعبة من الرابط الموجود في قسم "ملفات مهمة للتحميل" في هذا الموقع. اضغط على زر "تحميل اللعبة" الذهبي واتبع التعليمات. اللعبة مجانية بالكامل.
+</div>
+</div>
+</div>
+
+<!-- سؤال 2 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">2. كيف ألعب أونلاين مع أصدقائي؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+يوجد طريقتان: الأولى باستخدام <strong>Genarals Online</strong> وهو الأسهل والأسرع. الثانية باستخدام <strong>Radmin VPN</strong>. شرح كلا الطريقتين موجود في قسم الشروحات.
+</div>
+</div>
+</div>
+
+<!-- سؤال 3 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">3. ما هو GenPatcher ولماذا أحتاجه؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+<strong>GenPatcher</strong> هو أداة تقوم بإصلاح جميع مشاكل اللعبة تلقائياً مثل الشاشة السوداء، التوافق مع ويندوز الحديث، مشاكل الدقة، وتحطم اللعبة. ينصح به بشدة لكل لاعب.
+</div>
+</div>
+</div>
+
+<!-- سؤال 4 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">4. كيف أضيف خرائط جديدة للعبة؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+قم بتحميل الخرائط، ثم فك ضغط الملف، وضع المجلدات داخل المسار:
+<strong dir="ltr">Documents\Command and Conquer Generals Zero Hour\Maps</strong>
+إذا لم تجد مجلد Maps، قم بإنشائه يدوياً.
+</div>
+</div>
+</div>
+
+<!-- سؤال 5 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">5. ما سبب ظهور رسالة Mismatch؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+رسالة Mismatch تظهر بسبب اختلاف ملفات اللعبة بين اللاعبين. تأكدوا من تطابق الإصدارات ونفس الملفات الإضافية عند الجميع. أفضل حل هو استخدام Genarals Online.
+</div>
+</div>
+</div>
+
+<!-- سؤال 6 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">6. كيف أحل مشكلة الشاشة السوداء؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+أسرع حل: استخدم <strong>GenPatcher</strong> واضغط على "Fix Black Screen". إذا لم ينجح، احذف ملف <strong>options.ini</strong> من مجلد Documents الخاص باللعبة، وشغّل اللعبة كمسؤول بوضع توافق Windows XP.
+</div>
+</div>
+</div>
+
+<!-- سؤال 7 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">7. هل يوجد مودات للعبة؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+نعم، يوجد العديد من المودات مثل General Boss، Map.ini لتسريع البناء، ومودات أخرى. شاهد فيديو "أفضل 10 مودات" في قسم الشروحات لتعرف التفاصيل.
+</div>
+</div>
+</div>
+
+<!-- سؤال 8 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">8. كيف أعرب أصوات وحدات GLA؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+حمل ملف التعريب من قسم الملفات، ثم ضعه في مجلد اللعبة حسب المسار الموضح. المسارات الثلاثة مذكورة بالتفصيل في بطاقة "تعريب أصوات وحدات GLA".
+</div>
+</div>
+</div>
+
+<!-- سؤال 9 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">9. ما الفرق بين Genarals Online واللعبة العادية؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+<strong>Genarals Online</strong> هي نسخة مطورة من اللعبة صممها مطورو المجتمع. تتميز بسهولة اللعب أونلاين بدون برامج خارجية، استقرار أعلى، وإصلاحات مدمجة. ينصح بها بشدة للعب الجماعي.
+</div>
+</div>
+</div>
+
+<!-- سؤال 10 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">10. كيف أصلح مشكلة "Same Series"؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+تأكد من تطابق إصدارات اللعبة والملفات الإضافية عند جميع اللاعبين. احذف ملف Map.ini إذا لم تكن بحاجته، واستخدم GenPatcher لإصلاح ملفات اللعبة. شرح مفصل في قسم المشاكل.
+</div>
+</div>
+</div>
+
+<!-- سؤال 11 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">11. هل تعمل اللعبة على ويندوز 10 و 11؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+نعم، تعمل اللعبة على ويندوز 10 و 11 ولكنها تحتاج إلى بعض الإصلاحات. استخدم <strong>GenPatcher</strong> لتطبيق الإصلاحات اللازمة تلقائياً، وشغّل اللعبة بوضع التوافق Windows XP وكمسؤول.
+</div>
+</div>
+</div>
+
+<!-- سؤال 12 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">12. كيف أسوي رتبة 3 وتلسيع بناء؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+قم بتحميل ملف <strong>Map.ini</strong> من قسم الملفات. هذا الملف يجعل كل الوحدات رتبة 3 ويسرع البناء 5 أضعاف. ضعه عند جميع اللاعبين لتجنب Mismatch.
+</div>
+</div>
+</div>
+
+<!-- سؤال 13 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">13. أين أجد أفضل الخرائط؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+حمل <strong>Sahel Maps</strong> (800 خريطة) أو <strong>Naval Maps</strong> (خرائط بحرية) من قسم الملفات. هذه أفضل مجموعات الخرائط المتاحة.
+</div>
+</div>
+</div>
+
+<!-- سؤال 14 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">14. كيف أتواصل مع اللاعبين الآخرين؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+يمكنك استخدام <strong>دردشة الموقع</strong> الموجودة في الصفحة الرئيسية، أو الانضمام إلى <strong>سيرفر الديسكورد</strong> من قسم "تواصل معنا".
+</div>
+</div>
+</div>
+
+<!-- سؤال 15 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">15. هل يوجد محتوى تعليمي للعبة؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+نعم، قسم الشروحات مليء بالفيديوهات التعليمية. أنصح بقناة <strong>General Sahel TV</strong> (أفضل محتوى تعليمي) وقناة <strong>Hsn leb</strong> (أفضل محتوى احترافي).
+</div>
+</div>
+</div>
+
+<!-- سؤال 16 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">16. ما هو أفضل جيش في اللعبة؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+لا يوجد جيش "أفضل" بشكل مطلق. كل جيش له نقاط قوة وضعف. USA قوي بالتكنولوجيا والطيران، الصين قوي بالقوات البرية، وGLA قوي بالهجمات السريعة والمباغتة. يعتمد على أسلوب لعبك.
+</div>
+</div>
+</div>
+
+<!-- سؤال 17 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">17. كيف أتعلم الماكرو والمايكرو؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+شاهد فيديو "شرح الماكرو والمايكرو" في قسم الشروحات. كذلك سلسلة "أشياء لا يفعلها إلا المحترفون" من قناة Sahel General مفيدة جداً لتطوير مهاراتك.
+</div>
+</div>
+</div>
+
+<!-- سؤال 18 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">18. هل يمكنني تثبيت اللعبة على أكثر من جهاز؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+نعم، يمكنك تثبيت اللعبة على أي عدد من الأجهزة. انسخ ملفات اللعبة أو أعد التحميل من الرابط الموجود في الموقع.
+</div>
+</div>
+</div>
+
+<!-- سؤال 19 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">19. كيف أشارك في بطولات اللعبة؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+انضم إلى سيرفر الديسكورد الخاص بالموقع (الرابط في قسم تواصل معنا)، وتابع الإعلانات عن البطولات. يمكنك أيضاً متابعة قنوات Sahel General و Hsn leb لإعلانات البطولات.
+</div>
+</div>
+</div>
+
+<!-- سؤال 20 -->
+<div class="faq-item">
+<div class="faq-question-wrapper" onclick="toggleFaq(this)">
+<span class="faq-question-text">20. ماذا أفعل إذا لم تعمل الحلول المذكورة؟</span>
+<button class="faq-toggle-btn">+</button>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-content">
+تواصل معنا عبر واتساب على الرقم 0937318709 أو عبر إنستغرام أو ماسنجر. سنساعدك في حل مشكلتك. جميع روابط التواصل موجودة في قسم "تواصل معنا".
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- المحفوظات -->
+<section id="saved" class="hidden">
+
+<h2>💾 المحفوظات</h2>
+
+<div class="card saved-card">
+
+<h3>📌 العناصر المحفوظة</h3>
+
+<p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">
+هنا تجد جميع البطاقات والمشاكل والشروحات التي قمت بحفظها للرجوع إليها لاحقاً. اضغط على زر 💾 في أي بطاقة لحفظها.
+</p>
+
+<div id="savedList">
+<p class="saved-empty">لا توجد عناصر محفوظة بعد. اضغط على زر 💾 في أي بطاقة لحفظها هنا.</p>
+</div>
+
+<button class="btn" onclick="clearAllSaved()" style="margin-top:16px; background:linear-gradient(135deg,#ff416c,#c0392b);">
+🗑️ مسح جميع المحفوظات
+</button>
+
+</div>
+
 </section>
 
 <!-- عن الموقع -->
@@ -1759,6 +2397,8 @@ target="_blank">
 <h2>عن الموقع</h2>
 
 <div class="card">
+
+<button class="save-btn" onclick="saveItem(this, 'معلومات الموقع', 'معلومات عن موقع General Fix')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>📌 معلومات</h3>
 
@@ -1770,6 +2410,8 @@ target="_blank">
 
 <div class="card">
 
+<button class="save-btn" onclick="saveItem(this, 'آخر التحديثات', 'سجل تحديثات الموقع')" title="حفظ للرجوع لاحقاً">💾</button>
+
 <h3>🆕 ما الجديد</h3>
 
 <p>
@@ -1777,7 +2419,7 @@ target="_blank">
 ☀️ أضيف الوضع النهاري (Light Mode)<br>
 ✨ أضيفت مجموعة الخرائط البحرية Naval<br>
 🗣️ أضيف ملف تعريب أصوات وحدات GLA مع أزرار نسخ المسارات<br>
-🎓 أضيف قسم شروحات مهمة مع 6 فيديوهات تعليمية<br>
+🎓 أضيف قسم شروحات مهمة مع فيديوهات تعليمية<br>
 🏆 أضيف شرح أفضل 10 مودات<br>
 📦 أضيف شرح كل ما يحتاجه لاعب جنرال<br>
 🎮 أضيف رابط سيرفر ديسكورد<br>
@@ -1795,7 +2437,12 @@ target="_blank">
 👑 تحسين شكل زر تحميل اللعبة و جعله ذهبي<br>
 💬 تطوير شكل المحادثة وجعلها أجمل<br>
 📺 أضيفت بطاقة قناة General Sahel TV كأفضل قناة تعليمية<br>
-📺 أضيفت بطاقة قناة Hsn leb كأفضل قناة محتوى احترافي
+📺 أضيفت بطاقة قناة Hsn leb كأفضل قناة محتوى احترافي<br>
+💾 أضيف نظام الحفظ للعناصر مع قسم المحفوظات<br>
+❓ أضيف قسم الأسئلة المتكررة مع 20 سؤال وجواب منسدل<br>
+📦 أضيف تحميل DirectX 9.0c<br>
+💥 أضيف حل مشكلة تحطم اللعبة المفاجئ<br>
+🧠 أضيف فيديو شرح الماكرو والمايكرو
 </p>
 
 </div>
@@ -1808,6 +2455,8 @@ target="_blank">
 <h2>تواصل معنا</h2>
 
 <div class="card">
+
+<button class="save-btn" onclick="saveItem(this, 'طرق التواصل', 'معلومات التواصل مع إدارة الموقع')" title="حفظ للرجوع لاحقاً">💾</button>
 
 <h3>📞 طرق التواصل</h3>
 
@@ -1891,6 +2540,8 @@ function hideAll(){
     document.getElementById('services').classList.add('hidden');
     document.getElementById('tutorials').classList.add('hidden');
     document.getElementById('problems').classList.add('hidden');
+    document.getElementById('faq').classList.add('hidden');
+    document.getElementById('saved').classList.add('hidden');
     document.getElementById('about').classList.add('hidden');
     document.getElementById('contact').classList.add('hidden');
 }
@@ -1900,6 +2551,9 @@ function navigateTo(sectionId){
     document.getElementById(sectionId).classList.remove('hidden');
     toggleSidebar();
     window.scrollTo({top:0, behavior:'smooth'});
+    if(sectionId === 'saved'){
+        renderSavedItems();
+    }
 }
 
 function showHome(){
@@ -1975,6 +2629,82 @@ function loadTheme(){
     }
 }
 
+// ========= نظام الحفظ =========
+function saveItem(button, title, description){
+    button.classList.add('saved');
+    button.innerHTML = '✅';
+    
+    let savedItems = JSON.parse(localStorage.getItem('generalFixSaved') || '[]');
+    
+    const alreadySaved = savedItems.find(item => item.title === title);
+    if(!alreadySaved){
+        savedItems.push({
+            title: title,
+            description: description,
+            date: new Date().toLocaleDateString('ar-EG')
+        });
+        localStorage.setItem('generalFixSaved', JSON.stringify(savedItems));
+    }
+    
+    setTimeout(function(){
+        button.innerHTML = '💾';
+        button.classList.remove('saved');
+    }, 1500);
+}
+
+function renderSavedItems(){
+    const savedList = document.getElementById('savedList');
+    const savedItems = JSON.parse(localStorage.getItem('generalFixSaved') || '[]');
+    
+    if(savedItems.length === 0){
+        savedList.innerHTML = '<p class="saved-empty">لا توجد عناصر محفوظة بعد. اضغط على زر 💾 في أي بطاقة لحفظها هنا.</p>';
+        return;
+    }
+    
+    let html = '';
+    savedItems.forEach(function(item, index){
+        html += `
+        <div class="saved-list-item">
+            <div>
+                <div class="saved-list-item-text">📌 ${item.title}</div>
+                <div style="font-size:11px; color:var(--text-muted); margin-top:3px;">${item.description} • ${item.date}</div>
+            </div>
+            <button class="delete-saved-btn" onclick="deleteSavedItem(${index})" title="حذف">🗑️</button>
+        </div>`;
+    });
+    savedList.innerHTML = html;
+}
+
+function deleteSavedItem(index){
+    let savedItems = JSON.parse(localStorage.getItem('generalFixSaved') || '[]');
+    savedItems.splice(index, 1);
+    localStorage.setItem('generalFixSaved', JSON.stringify(savedItems));
+    renderSavedItems();
+}
+
+function clearAllSaved(){
+    if(confirm('هل أنت متأكد من مسح جميع المحفوظات؟')){
+        localStorage.removeItem('generalFixSaved');
+        renderSavedItems();
+    }
+}
+
+// ========= نظام الأسئلة المتكررة =========
+function toggleFaq(wrapper){
+    const answer = wrapper.nextElementSibling;
+    const btn = wrapper.querySelector('.faq-toggle-btn');
+    const isOpen = answer.classList.contains('open');
+    
+    if(isOpen){
+        answer.classList.remove('open');
+        btn.textContent = '+';
+    } else {
+        answer.classList.add('open');
+        btn.textContent = '−';
+    }
+}
+
+// ========= نظام عداد التحميلات =========
 const NAMESPACE_PREFIX = 'general-fix';
 
 const counterElements = {
@@ -1987,7 +2717,8 @@ const counterElements = {
     'naval': ['count-naval'],
     'mapini': ['count-mapini'],
     'gla-arabic': ['count-gla-arabic'],
-    'arabic-ui': ['count-arabic-ui']
+    'arabic-ui': ['count-arabic-ui'],
+    'directx': ['count-directx']
 };
 
 async function fetchCount(key){
