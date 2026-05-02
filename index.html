@@ -2447,6 +2447,104 @@ target="_blank">
 
 </div>
 
+<!-- ===== قسم الدعم المتكامل (مع إشعارات جميلة) ===== -->
+<div class="card" style="text-align: center; background: linear-gradient(135deg, var(--bg-card), rgba(0,200,160,0.05)); border: 2px solid rgba(0,200,160,0.3);">
+    
+    <h3 style="color: #00c8a0; font-size: 28px; margin-bottom: 10px;">💰 ادعم الموقع</h3>
+    
+    <p style="font-size: 18px; font-weight: 500; margin-bottom: 15px;">إذا استفدت من المحتوى، يمكنك دعمي من خلال أي من العملات التالية</p>
+    
+    <p style="color: var(--text-secondary); margin-bottom: 25px;">تبرعك يحفزني للاستمرار بتطوير الموقع وإضافة المزيد ♥️</p>
+    
+    <!-- ===== Bitcoin ===== -->
+    <div style="margin-bottom: 30px; padding: 15px; border-bottom: 1px solid var(--border-color);">
+        <h4 style="color: #f0b90b; font-size: 22px; margin-bottom: 10px;">₿ Bitcoin (BTC)</h4>
+        <div style="background: white; display: inline-block; padding: 10px; border-radius: 15px; margin-bottom: 10px;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=bc1qyamlrentlllxrlwrlp3jkapw6n8tna2llxta49" style="width: 120px; height: 120px;">
+        </div>
+        <div style="background: var(--bg-path); border-radius: 12px; padding: 10px; margin: 10px auto; max-width: 95%; direction: ltr;">
+            <code style="font-size: 11px; word-break: break-all;">bc1qyamlrentlllxrlwrlp3jkapw6n8tna2llxta49</code>
+        </div>
+        <button onclick="copyAddressBTC()" class="btn" style="background: linear-gradient(135deg, #f0b90b, #e8a520); padding: 10px 20px; font-size: 13px;">📋 نسخ عنوان BTC</button>
+    </div>
+    
+    <!-- ===== Ethereum ===== -->
+    <div style="margin-bottom: 15px; padding: 15px;">
+        <h4 style="color: #627eea; font-size: 22px; margin-bottom: 10px;">⟠ Ethereum (ETH)</h4>
+        <div style="background: white; display: inline-block; padding: 10px; border-radius: 15px; margin-bottom: 10px;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5" style="width: 120px; height: 120px;">
+        </div>
+        <div style="background: var(--bg-path); border-radius: 12px; padding: 10px; margin: 10px auto; max-width: 95%; direction: ltr;">
+            <code style="font-size: 11px; word-break: break-all;">0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5</code>
+        </div>
+        <button onclick="copyAddressETH()" class="btn" style="background: linear-gradient(135deg, #627eea, #4a5dc0); padding: 10px 20px; font-size: 13px;">📋 نسخ عنوان ETH</button>
+    </div>
+    
+    <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">⚠️ تأكد من إرسال كل عملة إلى عنوانها الصحيح.</p>
+</div>
+
+<script>
+// دوال النسخ مع إشعارات محسنة
+function copyAddressBTC() {
+    const address = "bc1qyamlrentlllxrlwrlp3jkapw6n8tna2llxta49";
+    navigator.clipboard.writeText(address).then(() => {
+        showNotification("✅", "تم نسخ عنوان Bitcoin بنجاح");
+    }).catch(() => {
+        showNotification("❌", "فشل النسخ، الرجاء المحاولة يدوياً");
+    });
+}
+
+function copyAddressETH() {
+    const address = "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5";
+    navigator.clipboard.writeText(address).then(() => {
+        showNotification("✅", "تم نسخ عنوان Ethereum بنجاح");
+    }).catch(() => {
+        showNotification("❌", "فشل النسخ، الرجاء المحاولة يدوياً");
+    });
+}
+
+// إشعار منبثق جميل يختفي بعد ثانيتين
+function showNotification(icon, message) {
+    const notification = document.createElement('div');
+    notification.innerHTML = `${icon} ${message}`;
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #00c8a0;
+        color: #071018;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 16px;
+        z-index: 9999;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        animation: fadeInOut 2s ease-in-out forwards;
+        text-align: center;
+        white-space: nowrap;
+        font-family: 'Cairo', sans-serif;
+    `;
+    document.body.appendChild(notification);
+    
+    // إضافة حركة الظهور والاختفاء
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 2000);
+}
+</script>
+
 </section>
 
 <!-- التواصل -->
