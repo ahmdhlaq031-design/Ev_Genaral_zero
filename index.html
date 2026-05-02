@@ -2886,6 +2886,73 @@ showHome();
 </script>
 
 <!-- كود إعلان Adsterra -->
+<!-- ===== شاشة الشروط والأحكام (تظهر مرة واحدة فقط) ===== -->
+<div id="termsOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); transition: 0.5s; font-family: 'Cairo', sans-serif;">
+    <div style="background: var(--bg-card); border-radius: 30px; padding: 30px 25px; max-width: 500px; width: 90%; text-align: center; border: 2px solid #00c8a0; box-shadow: 0 0 50px rgba(0,200,160,0.2);">
+        
+        <h2 style="color: #00c8a0; font-size: 28px; margin-bottom: 15px;">🌟 مرحباً بك في General Fix</h2>
+        
+        <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.8;">
+            قبل أن تبدأ، يرجى قراءة الشروط والأحكام التالية:
+        </p>
+        
+        <div style="background: rgba(0,0,0,0.3); border-radius: 20px; padding: 20px; text-align: right; margin-bottom: 25px; max-height: 300px; overflow-y: auto;">
+            <p style="color: #ff7a9b; font-weight: bold; margin-bottom: 10px;">📜 الشروط والأحكام:</p>
+            <ul style="color: var(--text-secondary); line-height: 1.8; padding-right: 20px;">
+                <li>✓ الالتزام بآداب الحوار وعدم التطاول على الآخرين</li>
+                <li>✓ عدم الترويج لأي محتوى غير أخلاقي أو عنيف أو مخالف للقوانين</li>
+                <li>✓ عدم إرسال روابط ضارة أو برمجيات خبيثة في دردشة الموقع</li>
+                <li>✓ احترام آراء اللاعبين الآخرين وعدم التحريض</li>
+                <li>✓ عدم انتحال شخصية أعضاء الفريق أو الإدارة</li>
+                <li>✓ عدم الترويج لمواقع أو خدمات منافسة دون إذن مسبق</li>
+            </ul>
+        </div>
+        
+        <p style="color: #00c8a0; margin-bottom: 20px; font-size: 14px;">
+            بالضغط على "موافق"، فإنك توافق على الالتزام بهذه الشروط.
+        </p>
+        
+        <button id="acceptTermsBtn" style="background: linear-gradient(135deg, #00c8a0, #0098e0); border: none; padding: 12px 35px; border-radius: 50px; color: white; font-weight: bold; font-size: 18px; cursor: pointer; transition: 0.3s; font-family: 'Cairo', sans-serif; width: 80%;">
+            ✅ موافق وأدخل إلى الموقع
+        </button>
+        
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">
+            لن تظهر هذه الشاشة مرة أخرى على هذا الجهاز
+        </p>
+    </div>
+</div>
+
+<script>
+// التحقق إذا كان المستخدم قد وافق على الشروط من قبل
+(function() {
+    const hasAccepted = localStorage.getItem('general_fix_terms_accepted');
+    
+    // إذا كان قد وافق سابقاً، نخفي الشاشة فوراً
+    if (hasAccepted === 'true') {
+        const overlay = document.getElementById('termsOverlay');
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
+        return;
+    }
+    
+    // إضافة حدث لزر الموافقة
+    const acceptBtn = document.getElementById('acceptTermsBtn');
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+            // حفظ الموافقة في التخزين المحلي للمتصفح
+            localStorage.setItem('general_fix_terms_accepted', 'true');
+            
+            // إخفاء الشاشة بشكل أنميشن
+            const overlay = document.getElementById('termsOverlay');
+            overlay.style.opacity = '0';
+            setTimeout(function() {
+                overlay.style.display = 'none';
+            }, 500);
+        });
+    }
+})();
+</script>
 <script async="async" data-cfasync="false" src="https://pl29313708.profitablecpmratenetwork.com/18ca03d9c41e309dc3caa438dc6296b1/invoke.js"></script>
 <div id="container-18ca03d9c41e309dc3caa438dc6296b1"></div>
 
