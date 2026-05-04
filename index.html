@@ -365,7 +365,7 @@ header h1{
     backdrop-filter:blur(35px);
     border-left:1px solid var(--border-sidebar);
     z-index:150;
-    padding:85px 14px 30px 14px;
+    padding:85px 14px 80px 14px;
     display:flex;
     flex-direction:column;
     gap:6px;
@@ -384,8 +384,8 @@ header h1{
     font-weight:800;
     letter-spacing:3px;
     text-transform:uppercase;
-    margin-bottom:2px;
-    padding-right:14px;
+    margin-bottom:8px;
+    padding-right:12px;
 }
 
 .overlay{
@@ -408,7 +408,7 @@ header h1{
     display:flex;
     align-items:center;
     gap:16px;
-    padding:16px 20px;
+    padding:12px 16px;
     border-radius:20px;
     text-decoration:none;
     color:var(--text-sidebar);
@@ -420,25 +420,31 @@ header h1{
     transition:all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     position:relative;
     overflow:hidden;
+    margin-bottom:4px;
 }
 
-.sidebar a .icon{
+.sidebar{
+    position:fixed;
+    top:0;
+    right:-360px;
+    width:320px;
+    height:100vh;
+    max-height:100vh;
+    background:var(--bg-sidebar);
+    backdrop-filter:blur(35px);
+    -webkit-backdrop-filter:blur(35px);
+    border-left:1px solid var(--border-sidebar);
+    z-index:150;
+    padding:85px 14px 100px 14px;
     display:flex;
-    align-items:center;
-    justify-content:center;
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    background:var(--icon-bg);
-    border:1px solid var(--icon-border);
-    font-size:20px;
-    flex-shrink:0;
-    transition:0.4s;
-    position:relative;
-    z-index:1;
-    backdrop-filter:blur(5px);
+    flex-direction:column;
+    gap:4px;
+    transition:0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:-15px 0 60px rgba(0,0,0,0.25);
+    overflow-y:scroll !important;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
 }
-
 /* تأثير حركة الأيقونة عند التحويم */
 .sidebar a:hover .icon{
     transform:scale(1.15) rotate(5deg);
@@ -1324,6 +1330,26 @@ footer{
     <a onclick="navigateTo('saved')">
         <span class="icon">💾</span>
         المحفوظات
+    </a>
+    
+    <!-- مواقعنا الأخرى -->
+    <div class="sidebar-title" style="margin-top: 10px;">🌐 مواقعنا الأخرى</div>
+    
+    <a href="https://ahmdhlaq031-design.github.io/Smart-Free-tools-/" target="_blank">
+    <span class="icon">🛠️</span>
+    Smart Free Tools
+    </a>
+    <a href="https://ahmdhlaq031-design.github.io/Gamerenger5/" target="_blank">
+    <span class="icon">🏆</span>
+    Gamerenger
+    </a>
+    <a href="https://ahmdhlaq031-design.github.io/Seel/" target="_blank">
+    <span class="icon">🛒</span>
+    Genaral Fix Store
+    </a>
+    <a href="https://ahmdhlaq031-design.github.io" target="_blank">
+    <span class="icon">🏠</span>
+    الرئيسية
     </a>
 
     <div class="sidebar-divider"></div>
@@ -3112,6 +3138,205 @@ showHome();
     applyTheme(currentTheme);
 })();
 </script>
+
+<style>
+@keyframes starsMove {
+    0% { transform: translateX(0%) translateY(0%); }
+    100% { transform: translateX(-15%) translateY(-8%); }
+}
+
+@keyframes nebulaRotate {
+    0% { transform: rotate(0deg) scale(1); opacity: 0.35; }
+    50% { transform: rotate(180deg) scale(1.25); opacity: 0.6; }
+    100% { transform: rotate(360deg) scale(1); opacity: 0.35; }
+}
+
+@keyframes starsTwinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.space-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, #0a0a2a, #020210, #000005);
+    overflow: hidden;
+}
+
+/* النجوم الكثيرة - 100 نجمة */
+.space-bg::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 5% 10%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 8% 25%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 12% 45%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 15% 70%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 18% 88%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 22% 15%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 28% 35%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 32% 55%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 38% 80%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 42% 92%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 48% 5%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 52% 30%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 55% 50%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 62% 68%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 68% 85%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 72% 12%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 78% 40%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 82% 60%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 85% 75%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 88% 95%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 92% 20%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 95% 45%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 98% 65%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 2% 50%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 45% 18%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 30% 78%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 75% 33%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 60% 42%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 20% 65%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50% 50%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 40% 22%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 10% 35%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90% 55%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 70% 15%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 25% 95%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 80% 8%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 35% 62%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 58% 88%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 15% 42%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 65% 28%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 85% 72%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 33% 33%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 77% 48%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 44% 77%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 93% 38%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 5% 80%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50% 12%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 18% 52%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 72% 62%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 38% 98%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 62% 3%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 48% 72%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 12% 18%, white, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 88% 42%, white, rgba(0,0,0,0));
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    animation: starsMove 10s linear infinite;
+}
+
+/* طبقة نجوم إضافية متحركة أبطأ */
+.space-bg::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 7% 33%, rgba(255,200,150,0.8), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 23% 67%, rgba(200,180,255,0.7), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 41% 14%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 59% 44%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 73% 81%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 87% 29%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 96% 73%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 31% 91%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 67% 6%, white, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 53% 54%, white, rgba(0,0,0,0));
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    animation: starsMove 25s linear infinite reverse;
+    opacity: 0.7;
+}
+
+/* السحب الكونية */
+.nebula {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(ellipse, rgba(80, 40, 150, 0.3), rgba(150, 50, 200, 0.12), transparent);
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: nebulaRotate 25s ease-in-out infinite;
+    top: 20%;
+    left: 20%;
+}
+
+.nebula2 {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background: radial-gradient(ellipse, rgba(30, 100, 180, 0.25), rgba(80, 60, 150, 0.1), transparent);
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: nebulaRotate 35s ease-in-out infinite reverse;
+    bottom: 10%;
+    right: 10%;
+}
+
+/* وميض النجوم */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+/* ========== إصلاح سكرول الموبايل للقائمة ========== */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 290px;
+        right: -310px;
+        padding: 75px 12px 120px 12px;
+        overflow-y: scroll !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .sidebar a {
+        padding: 13px 14px;
+        font-size: 13px;
+        flex-shrink: 0;
+    }
+    
+    .sidebar a .icon {
+        width: 36px;
+        height: 36px;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 380px) {
+    .sidebar {
+        width: 265px;
+        right: -290px;
+        padding: 70px 10px 130px 10px;
+    }
+    
+    .sidebar a {
+        padding: 11px 12px;
+        font-size: 12px;
+        gap: 8px;
+    }
+    
+    .sidebar a .icon {
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
+    }
+}
+
+</style>
+
+<div class="space-bg">
+    <div class="nebula"></div>
+    <div class="nebula2"></div>
+</div>
 
 </body>
 </html>
